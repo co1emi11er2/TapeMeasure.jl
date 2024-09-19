@@ -1,0 +1,13 @@
+name = "Dimensions"
+uuid = "80345c00-9166-4d3e-8c72-003f651600ad"
+authors = ["Cole Miller"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
