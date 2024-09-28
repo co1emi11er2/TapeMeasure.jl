@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.46
+# v0.19.45
 
 using Markdown
 using InteractiveUtils
@@ -13,13 +13,17 @@ using PlutoUI
 # ╔═╡ 36479cda-c416-475a-ad34-38582e7df59a
 using StructuralUnits
 
+# ╔═╡ 154bf6a9-1522-45af-b6f2-9ee59b340d10
+import Makie.SpecApi as S
+
 # ╔═╡ afa59f81-f4ca-4708-9ff9-57539d290334
 # ╠═╡ show_logs = false
 @fromparent import *
 
+# ╔═╡ 06ae1797-0d11-48d4-b571-06090a6e685c
+uc = Makie.UnitfulConversion(ft)
+
 # ╔═╡ b5efb3e2-bcba-42c0-94dc-dce8ff8e6c08
-# ╠═╡ disabled = true
-#=╠═╡
  x = [
 	 [2.5ft, 2.5ft, 3.7083333329999997ft, 3.7083333329999997ft, 2.666666667ft, 2.666666667ft, 5.333333333000001ft, 5.333333333000001ft, 4.291666667ft, 4.291666667ft, 5.5ft, 5.5ft, 2.5ft],
 	 [10.5ft, 10.5ft, 11.708333333ft, 11.708333333ft, 10.666666667ft, 10.666666667ft, 13.333333333ft, 13.333333333ft, 12.291666667ft, 12.291666667ft, 13.5ft, 13.5ft, 10.5ft],
@@ -27,7 +31,6 @@ using StructuralUnits
 	 [26.5ft, 26.5ft, 27.708333333ft, 27.708333333ft, 26.666666667ft, 26.666666667ft, 29.333333333ft, 29.333333333ft, 28.291666667ft, 28.291666667ft, 29.5ft, 29.5ft, 26.5ft],
 	 [34.5ft, 34.5ft, 35.708333333ft, 35.708333333ft, 34.666666667ft, 34.666666667ft, 37.333333333ft, 37.333333333ft, 36.291666667ft, 36.291666667ft, 37.5ft, 37.5ft, 34.5ft]
  ]
-  ╠═╡ =#
 
 # ╔═╡ b72aa993-e73a-42c2-b70e-22440b5b9b0a
 y = [
@@ -39,18 +42,18 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-#=╠═╡
 td = h_dimension(x, y)
-  ╠═╡ =#
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
-# ╠═╡ disabled = true
-#=╠═╡
 begin
-	plt = plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
-	plot!(td)
+	let
+		f = Figure()
+		ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
+		lines!.(ax, x, y, color=:lightgrey)
+		plot!(ax, td)
+		f
+	end
 end
-  ╠═╡ =#
 
 # ╔═╡ e61bfb2e-4962-4548-804b-d4a3a708985a
 # ╠═╡ disabled = true
@@ -86,13 +89,15 @@ yy = [
 tdd = h_dimension(xx, yy, offset=0)
 
 # ╔═╡ dfe5e6b6-843d-44eb-a625-1dc4bf814c07
-# ╠═╡ disabled = true
-#=╠═╡
 begin
-	plot(xx, yy, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
-	plot!(tdd)
+	let
+		f = Figure()
+		ax = Axis(f[1,1], autolimitaspect=1)
+		lines!.(ax, xx, yy, color=:lightgrey)
+		plot!(ax, tdd)
+		f
+	end
 end
-  ╠═╡ =#
 
 # ╔═╡ 43cc08aa-9b1a-473b-8af9-41a92e6eb2aa
 vd = v_dimension(yy, xx, offset=-5)
@@ -136,60 +141,75 @@ begin
 end
   ╠═╡ =#
 
-# ╔═╡ 5345181e-0102-4e23-90aa-16f867a48efe
-const Dim = Plot{<:TopDimensions}
-
-# ╔═╡ ca0d5736-4a82-4d54-a07d-904a33ba2059
-argument_names(::Type{<: Dim}) = (:dims,)
-
 # ╔═╡ 6dbcfda7-aa37-43b8-87ae-ce3a870063bf
 
 
-# ╔═╡ 2c9a787b-0575-4ef3-9d25-39fc64f5edec
-function plot!(p::Dim)
-	dims::TopDimensions = p[:dims]
-    xs = dims.xs
-	ys = dims.ys
-	err_low = dims.minor_lines
-	err_high = dims.major_lines
-	lines!(p, xs, ys)
-	errorbars!(p, xs, ys, err_low, err_high)
-    p
-end
-
-# ╔═╡ 3bd1ad9c-d090-4c88-b00d-d2fe153df880
-@recipe(DimPlot, dims) do scene
-    Theme(
-        
-    )
-end
-
 # ╔═╡ f26b920f-8ae1-4672-8603-d7663358b100
 begin
-	lines(gx, gy)
-	dimplot!(top)
+	let
+	f = Figure()
+	ax = Axis(f[1, 1])
+	lines!(ax, gx, gy)
+	plot!(ax, top)
+	f
+	end
 end
 
-# ╔═╡ aa5ff2e4-2e3c-4a1f-9644-5bad62e5865d
-function Makie.plot!(p::DimPlot{<:Tuple{TopDimensions}})
-    dims = p[:dims]
-    xs = dims.xs
-	ys = dims.ys
-	err_low = dims.minor_lines
-	err_high = dims.major_lines
-	lines!(p, xs, ys)
-	errorbars!(p, xs, ys, err_low, err_high)
-    p
+# ╔═╡ 1862410d-5dfd-408e-8ff2-1a58e10734c1
+begin
+	f = Figure()
+	ax = Axis(f[1, 1])
+	lines!(ax, gx, gy)
+	dim!(ax, top)
+	f
 end
 
 # ╔═╡ ac552355-22ae-460a-9d0a-211c305d3d4d
+# ╠═╡ disabled = true
+#=╠═╡
+function Makie.convert_arguments(::Type{<:AbstractPlot}, obj::TopDimensions)
+    plots = PlotSpec[]
+	xs = obj.xs
+	ys = obj.ys
 
+	# major and minor lines can be single digit or vector
+	# convert to vector
+	minor_lines = xs .* 0 .+ obj.minor_lines
+	major_lines = xs .* 0 .+ obj.major_lines
+
+	# Plot dimension lines
+    push!(plots, S.Lines(xs, ys; color = :black))
+
+	# plot extension lines
+    for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
+		err_x = [x, x]
+		err_y = [y + minor, y - major]
+		push!(plots, S.Lines(err_x, err_y; color = :black))
+	end
+
+	# pull label info
+	lbl_x = obj.labels.xs
+	lbl_y = obj.labels.ys
+	annos = obj.labels.lbls
+
+	# create blank labels
+	n = length.(annos)
+    blanks = vcat("█".^n #=.* "█"=#)
+
+	# plot blank labels
+	push!(plots, S.Text(lbl_x, lbl_y; text=blanks, align=(:center, :center), color=:white))
+
+	# plot labels
+    push!(plots, S.Text(lbl_x, lbl_y; text=annos, align=(:center, :center)))
+    return plots
+end
+  ╠═╡ =#
 
 # ╔═╡ a485b1d9-4cae-4e8c-811d-edd603d4587e
-
-
-# ╔═╡ 8b8422e5-2642-4455-82ab-4eb631618a0f
-
+begin
+	lines!(gx, gy)
+	dim!(top)
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -212,7 +232,7 @@ StructuralUnits = "~0.1.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.5"
+julia_version = "1.10.4"
 manifest_format = "2.0"
 project_hash = "61fca314e2fa558e3f661af421b652b73a5cb6c2"
 
@@ -321,9 +341,9 @@ version = "1.1.0"
 
 [[deps.CairoMakie]]
 deps = ["CRC32c", "Cairo", "Cairo_jll", "Colors", "FileIO", "FreeType", "GeometryBasics", "LinearAlgebra", "Makie", "PrecompileTools"]
-git-tree-sha1 = "361dec06290d76b6d70d0c7dc888038eec9df63a"
+git-tree-sha1 = "4f827b38d3d9ffe6e3b01fbcf866c625fa259ca5"
 uuid = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
-version = "0.12.9"
+version = "0.12.11"
 
 [[deps.Cairo_jll]]
 deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
@@ -428,9 +448,9 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 
 [[deps.DelaunayTriangulation]]
 deps = ["AdaptivePredicates", "EnumX", "ExactPredicates", "Random"]
-git-tree-sha1 = "40f98cdd36161f7a2141cb1daec61bbf9e4f7512"
+git-tree-sha1 = "94eb20e6621600f4315813b1d1fc9b8a5a6a34db"
 uuid = "927a84f5-c5f4-47a5-9785-b46e178433df"
-version = "1.4.2"
+version = "1.4.0"
 
 [[deps.Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
@@ -438,9 +458,9 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[deps.Distributions]]
 deps = ["AliasTables", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "d7477ecdafb813ddee2ae727afa94e9dcb5f3fb0"
+git-tree-sha1 = "e6c693a0e4394f8fda0e51a5bdf5aef26f8235e9"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.112"
+version = "0.25.111"
 
     [deps.Distributions.extensions]
     DistributionsChainRulesCoreExt = "ChainRulesCore"
@@ -505,9 +525,9 @@ version = "1.8.0"
 
 [[deps.FFTW_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "4d81ed14783ec49ce9f2e168208a12ce1815aa25"
+git-tree-sha1 = "c6033cc3892d0ef5bb9cd29b7f2f0331ea5184ea"
 uuid = "f5851436-0d7a-5f13-b9de-f02708fd171a"
-version = "3.3.10+1"
+version = "3.3.10+0"
 
 [[deps.FileIO]]
 deps = ["Pkg", "Requires", "UUIDs"]
@@ -595,9 +615,9 @@ version = "0.4.2"
 
 [[deps.GeoInterface]]
 deps = ["Extents", "GeoFormatTypes"]
-git-tree-sha1 = "2f6fce56cdb8373637a6614e14a5768a88450de2"
+git-tree-sha1 = "5921fc0704e40c024571eca551800c699f86ceb4"
 uuid = "cf35fbd7-0cd7-5166-be24-54bfbe79505f"
-version = "1.3.7"
+version = "1.3.6"
 
 [[deps.GeometryBasics]]
 deps = ["EarCut_jll", "Extents", "GeoInterface", "IterTools", "LinearAlgebra", "StaticArrays", "StructArrays", "Tables"]
@@ -812,9 +832,9 @@ version = "0.1.5"
 
 [[deps.JpegTurbo_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "25ee0be4d43d0269027024d75a24c24d6c6e590c"
+git-tree-sha1 = "c84a835e1a09b289ffcd2271bf2a337bbdda6637"
 uuid = "aacddb02-875f-59d6-b918-886e6ef4fbf8"
-version = "3.0.4+0"
+version = "3.0.3+0"
 
 [[deps.KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
@@ -836,9 +856,9 @@ version = "18.1.7+0"
 
 [[deps.LZO_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "854a9c268c43b77b0a27f22d7fab8d33cdb3a731"
+git-tree-sha1 = "70c5da094887fd2cae843b8db33920bac4b6f07d"
 uuid = "dd4b983a-f0e5-5f8d-a1b7-129d4a5fb1ac"
-version = "2.10.2+1"
+version = "2.10.2+0"
 
 [[deps.LaTeXStrings]]
 git-tree-sha1 = "50901ebc375ed41dbf8058da26f9de442febbbec"
@@ -974,16 +994,16 @@ uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 version = "0.5.13"
 
 [[deps.Makie]]
-deps = ["Animations", "Base64", "CRC32c", "ColorBrewer", "ColorSchemes", "ColorTypes", "Colors", "Contour", "Dates", "DelaunayTriangulation", "Distributions", "DocStringExtensions", "Downloads", "FFMPEG_jll", "FileIO", "FilePaths", "FixedPointNumbers", "Format", "FreeType", "FreeTypeAbstraction", "GeometryBasics", "GridLayoutBase", "ImageIO", "InteractiveUtils", "IntervalSets", "Isoband", "KernelDensity", "LaTeXStrings", "LinearAlgebra", "MacroTools", "MakieCore", "Markdown", "MathTeXEngine", "Observables", "OffsetArrays", "Packing", "PlotUtils", "PolygonOps", "PrecompileTools", "Printf", "REPL", "Random", "RelocatableFolders", "Scratch", "ShaderAbstractions", "Showoff", "SignedDistanceFields", "SparseArrays", "Statistics", "StatsBase", "StatsFuns", "StructArrays", "TriplotBase", "UnicodeFun", "Unitful"]
-git-tree-sha1 = "204f06860af9008fa08b3a4842f48116e1209a2c"
+deps = ["Animations", "Base64", "CRC32c", "ColorBrewer", "ColorSchemes", "ColorTypes", "Colors", "Contour", "Dates", "DelaunayTriangulation", "Distributions", "DocStringExtensions", "Downloads", "FFMPEG_jll", "FileIO", "FilePaths", "FixedPointNumbers", "Format", "FreeType", "FreeTypeAbstraction", "GeometryBasics", "GridLayoutBase", "ImageBase", "ImageIO", "InteractiveUtils", "Interpolations", "IntervalSets", "Isoband", "KernelDensity", "LaTeXStrings", "LinearAlgebra", "MacroTools", "MakieCore", "Markdown", "MathTeXEngine", "Observables", "OffsetArrays", "Packing", "PlotUtils", "PolygonOps", "PrecompileTools", "Printf", "REPL", "Random", "RelocatableFolders", "Scratch", "ShaderAbstractions", "Showoff", "SignedDistanceFields", "SparseArrays", "Statistics", "StatsBase", "StatsFuns", "StructArrays", "TriplotBase", "UnicodeFun", "Unitful"]
+git-tree-sha1 = "2281aaf0685e5e8a559982d32f17d617a949b9cd"
 uuid = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
-version = "0.21.9"
+version = "0.21.11"
 
 [[deps.MakieCore]]
 deps = ["ColorTypes", "GeometryBasics", "IntervalSets", "Observables"]
-git-tree-sha1 = "b0e2e3473af351011e598f9219afb521121edd2b"
+git-tree-sha1 = "22fed09860ca73537a36d4e5a9bce0d9e80ee8a8"
 uuid = "20f20a25-4f0e-4fdf-b5d1-57303727442b"
-version = "0.8.6"
+version = "0.8.8"
 
 [[deps.MappedArrays]]
 git-tree-sha1 = "2dab0221fe2b0f2cb6754eaa743cc266339f527e"
@@ -1084,9 +1104,9 @@ version = "0.8.1+2"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "7493f61f55a6cce7325f197443aa80d32554ba10"
+git-tree-sha1 = "1b35263570443fdd9e76c76b7062116e2f374ab8"
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
-version = "3.0.15+1"
+version = "3.0.15+0"
 
 [[deps.OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
@@ -1177,9 +1197,9 @@ version = "0.8.1"
 
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
-git-tree-sha1 = "ab55ee1510ad2af0ff674dbcced5e94921f867a9"
+git-tree-sha1 = "eba4810d5e6a01f612b948c9fa94f905b49087b0"
 uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-version = "0.7.59"
+version = "0.7.60"
 
 [[deps.PolygonOps]]
 git-tree-sha1 = "77b3d3605fc1cd0b42d95eba87dfcd2bf67d5ff6"
@@ -1524,9 +1544,9 @@ version = "0.4.1"
 
 [[deps.Unitful]]
 deps = ["Dates", "LinearAlgebra", "Random"]
-git-tree-sha1 = "dd260903fdabea27d9b6021689b3cd5401a57748"
+git-tree-sha1 = "d95fe458f26209c66a187b1114df96fd70839efd"
 uuid = "1986cc42-f94f-5a68-af5c-568840ba703d"
-version = "1.20.0"
+version = "1.21.0"
 
     [deps.Unitful.extensions]
     ConstructionBaseUnitfulExt = "ConstructionBase"
@@ -1634,7 +1654,7 @@ version = "0.15.2+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.11.0+0"
+version = "5.8.0+1"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1644,9 +1664,9 @@ version = "2.0.3+0"
 
 [[deps.libpng_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Zlib_jll"]
-git-tree-sha1 = "b70c870239dc3d7bc094eb2d6be9b73d27bef280"
+git-tree-sha1 = "d7015d2e18a5fd9a4f47de711837e980519781a4"
 uuid = "b53b4c65-9356-5827-b1ea-8c7a1a84506f"
-version = "1.6.44+0"
+version = "1.6.43+1"
 
 [[deps.libsixel_jll]]
 deps = ["Artifacts", "JLLWrappers", "JpegTurbo_jll", "Libdl", "Pkg", "libpng_jll"]
@@ -1691,9 +1711,11 @@ version = "3.6.0+0"
 
 # ╔═╡ Cell order:
 # ╠═2caf3158-76c9-11ef-2e1c-2b2b107b423e
+# ╠═154bf6a9-1522-45af-b6f2-9ee59b340d10
 # ╠═2329b82c-aa6d-4fd6-b053-b1cb9ff67fa7
 # ╠═afa59f81-f4ca-4708-9ff9-57539d290334
 # ╠═36479cda-c416-475a-ad34-38582e7df59a
+# ╠═06ae1797-0d11-48d4-b571-06090a6e685c
 # ╟─b5efb3e2-bcba-42c0-94dc-dce8ff8e6c08
 # ╟─b72aa993-e73a-42c2-b70e-22440b5b9b0a
 # ╠═8b54cbee-419e-4498-be73-d0c03ef2f5c9
@@ -1714,15 +1736,10 @@ version = "3.6.0+0"
 # ╠═dbfa8d09-c788-47de-ac07-0a9086e6bad6
 # ╠═7231f28c-38a7-4b1f-9c3e-650ba799db46
 # ╠═8273a5a2-0271-4500-a1f1-61c4454df15a
-# ╠═5345181e-0102-4e23-90aa-16f867a48efe
-# ╠═ca0d5736-4a82-4d54-a07d-904a33ba2059
 # ╠═6dbcfda7-aa37-43b8-87ae-ce3a870063bf
-# ╠═2c9a787b-0575-4ef3-9d25-39fc64f5edec
 # ╠═f26b920f-8ae1-4672-8603-d7663358b100
-# ╠═3bd1ad9c-d090-4c88-b00d-d2fe153df880
-# ╠═aa5ff2e4-2e3c-4a1f-9644-5bad62e5865d
+# ╠═1862410d-5dfd-408e-8ff2-1a58e10734c1
 # ╠═ac552355-22ae-460a-9d0a-211c305d3d4d
 # ╠═a485b1d9-4cae-4e8c-811d-edd603d4587e
-# ╠═8b8422e5-2642-4455-82ab-4eb631618a0f
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
