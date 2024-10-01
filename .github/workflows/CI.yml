@@ -46,7 +46,7 @@ jobs:
           fail_ci_if_error: false
       - uses: julia-actions/julia-uploadcoveralls@v1
         env:
-          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+          COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
   docs:
     name: Documentation
     runs-on: ubuntu-latest
