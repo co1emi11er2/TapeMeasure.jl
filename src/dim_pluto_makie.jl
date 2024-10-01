@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.45
+# v0.19.46
 
 using Markdown
 using InteractiveUtils
@@ -44,6 +44,9 @@ y = [
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
 td = h_dimension(x, y)
 
+# ╔═╡ 49427aeb-5740-4d5f-a0ce-780a24c6a572
+ld = v_dimension(y, x)
+
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
 	let
@@ -51,6 +54,17 @@ begin
 		ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
 		lines!.(ax, x, y, color=:lightgrey)
 		plot!(ax, td)
+		f
+	end
+end
+
+# ╔═╡ aa439a91-74a9-4030-aac9-09e5883e448f
+begin
+	let
+		f = Figure()
+		ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
+		lines!.(ax, y, x, color=:lightgrey)
+		plot!(ax, ld)
 		f
 	end
 end
@@ -151,6 +165,9 @@ begin
 	ax = Axis(f[1, 1])
 	lines!(ax, gx, gy)
 	plot!(ax, top)
+	plot!(ax, bot)
+	plot!(ax, left)
+	plot!(ax, right)
 	f
 	end
 end
@@ -232,7 +249,7 @@ StructuralUnits = "~0.1.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.4"
+julia_version = "1.10.5"
 manifest_format = "2.0"
 project_hash = "61fca314e2fa558e3f661af421b652b73a5cb6c2"
 
@@ -1654,7 +1671,7 @@ version = "0.15.2+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.8.0+1"
+version = "5.11.0+0"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1719,7 +1736,9 @@ version = "3.6.0+0"
 # ╟─b5efb3e2-bcba-42c0-94dc-dce8ff8e6c08
 # ╟─b72aa993-e73a-42c2-b70e-22440b5b9b0a
 # ╠═8b54cbee-419e-4498-be73-d0c03ef2f5c9
+# ╠═49427aeb-5740-4d5f-a0ce-780a24c6a572
 # ╠═fa68b90c-4b93-4d32-be72-32f96318f34f
+# ╠═aa439a91-74a9-4030-aac9-09e5883e448f
 # ╠═e61bfb2e-4962-4548-804b-d4a3a708985a
 # ╠═e3d9dd1e-1382-40e8-9363-dff5ef8c4ee7
 # ╠═01e5c2f2-cdd7-449b-8ebc-3b2d15066024

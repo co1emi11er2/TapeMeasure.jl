@@ -3,7 +3,8 @@ module Dimensions
 using RecipesBase
 import Statistics: middle
 using Unitful
-export TopDimensions, dim, dim!
+export Labels, TopDimensions, BottomDimensions, LeftDimensions, RightDimensions
+export dim, dim!, h_dimension, v_dimension
 
 include("Utils.jl")
 include("TopDimensions.jl")
