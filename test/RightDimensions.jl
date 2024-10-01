@@ -26,3 +26,34 @@ let
     test_dimension_fields(expected, calc)
     
 end
+
+
+# ----------------
+# single-object plot format check
+# ----------------
+
+let 
+    xs = [5.95ft, 5.95ft]
+    ys = [-0.25ft, -4.75ft]
+    lbl_xs = [5.95ft]
+    lbl_ys = [-2.5ft]
+    lbls = ["4.5 ft"]
+    labels = Labels(lbl_xs, lbl_ys, lbls)
+
+    # check without offset
+    minor_lines = [0.225ft]
+    major_lines = [0.405ft]
+    expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
+    calc = dim_right(single_girder_xs_plot_format, single_girder_ys_plot_format)
+    test_dimension_fields(expected, calc)
+
+    # check with offset of 5ft
+    xs = [10.5ft, 10.5ft]
+    lbl_xs = [10.5ft]
+    major_lines = [4.5ft]
+    labels = Labels(lbl_xs, lbl_ys, lbls)
+    expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
+    calc = dim_right(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=5ft)
+    test_dimension_fields(expected, calc)
+    
+end
