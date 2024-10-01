@@ -1,6 +1,5 @@
 module Dimensions
 
-using RecipesBase
 import Statistics: middle
 using Unitful
 export Labels, TopDimensions, BottomDimensions, LeftDimensions, RightDimensions

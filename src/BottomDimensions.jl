@@ -6,29 +6,6 @@ struct BottomDimensions
     major_lines
 end
 
-@recipe function f(dims::BottomDimensions; with_mask=true, dim_color=:black)
-    
-    legend := false
-
-    # points for dimensions
-    dim_xs, dim_ys = dims.xs, dims.ys
-
-    # plot dimensions
-    @series begin
-        seriestype  :=  :path
-        linecolor := dim_color
-        markercolor := dim_color
-        yerror --> (dims.minor_lines, dims.major_lines)
-        markersize := 0
-        
-        dim_xs, dim_ys
-    end
-
-    # plot labels
-    @series begin
-        dims.labels
-    end
-end
 
 function dim_bottom(xs::Vector{T}, ys::Vector{S}; offset=zero(S)) where {T, S}
     max_x = max(xs...)
