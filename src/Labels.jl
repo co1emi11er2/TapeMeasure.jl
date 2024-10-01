@@ -45,36 +45,3 @@ function dimension_labels(
 
 end
 
-function labels_for_plots(
-    labels::Labels, 
-    with_mask::Bool=true,
-    font_size = 5,
-    font_color = :black,
-    font = "Courier",)
-
-    x_lbls = labels.xs
-    y_lbls = labels.ys
-    annos = labels.lbls
-
-    annotations = []
-    for (x, y, txt) in zip(x_lbls, y_lbls, annos)
-        push!(annotations, (x, y, (txt, font_size, font_color)))
-    end
-
-    if with_mask
-        n = length.(annos)
-        blanks = vcat("█".^n #=.* "█"=#)
-
-        # annotations = Vector{Tuple{Float64, Float64, String, Tuple}}(undef, length(x_lbls))
-        blank_annotations = []
-        for (x, y, txt) in zip(x_lbls, y_lbls, blanks)
-            push!(blank_annotations, (x, y, (txt, font_size, :white)))
-        end
-
-        annotations = vcat(blank_annotations, annotations)
-        x_lbls = vcat(x_lbls, x_lbls)
-        y_lbls = vcat(y_lbls, y_lbls)
-    end
-
-    x_lbls, y_lbls, annotations
-end
