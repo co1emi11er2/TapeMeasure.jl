@@ -176,25 +176,51 @@ function get_major_minor_lines(x_or_y_dims, offset::T) where T
     pnt1 = x_or_y_dims[1]
     pnt2 = x_or_y_dims[2]
     dim_dist = abs(pnt2 - pnt1)
+    min_length = 0.05 * dim_dist # min length of extention line
+
 
     if offset == zero(T)
-        major_lines = [0.05 * dim_dist]
+        major_lines = [min_length for _ in x_or_y_dims]
         minor_lines = major_lines
     else
-        major_lines = [abs(offset)*0.9]
-        minor_lines = [0.05 * dim_dist]
+        major_lines = [abs(offset)*0.9 for _ in x_or_y_dims]
+        minor_lines = [min_length for _ in x_or_y_dims]
     end
+
+    return major_lines, minor_lines
+end
+
+function get_major_minor_lines(x_or_y_dims, y_or_x_mid, y_or_x_max::T) where T
+    pnt1 = x_or_y_dims[1]
+    pnt2 = x_or_y_dims[2]
+    dim_dist = abs(pnt2 - pnt1)
+    min_length = 0.05 * dim_dist # min length of extention line
+
+    minor_lines = [min_length for _ in x_or_y_dims]
+
+    major_lines = zeros(T, length(y_or_x_mid))
+    for (i, y_or_x) in enumerate(y_or_x_mid)
+        
+        major_line = abs(y_or_x_max - y_or_x)*0.9
+        major_line = major_line == zero(T) ? min_length : major_line
+        major_lines[i] = major_line
+    end
+
+
 
     return major_lines, minor_lines
 end
 
 function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
     
-    x_dims, y_dims = dimensions(xs, ys)
+    x_dims, y_mid = dimensions(xs, ys)
 
-    y_dims = y_dims .+ offset
+    # ensure y_dims values are either maximum or minimum
+    max_or_min = offset >= zero(S) ? max : min
+    y_max_or_min = max_or_min(y_mid...) + offset
+    y_dims = [y_max_or_min for _ in y_mid]
 
-    major_lines, minor_lines = get_major_minor_lines(x_dims, offset)
+    major_lines, minor_lines = get_major_minor_lines(x_dims, y_mid, y_max_or_min)
 
     labels = dimension_labels(x_dims, y_dims)
     if offset >= zero(S)
@@ -206,11 +232,14 @@ end
 
 function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
     
-    x_dims, y_dims = dimensions(xs, ys)
+    x_mid, y_dims = dimensions(xs, ys)
 
-    x_dims = x_dims .+ offset
+    # ensure x_dims values are either maximum or minimum
+    max_or_min = offset >= zero(S) ? max : min
+    x_max_or_min = max_or_min(x_mid...) + offset
+    x_dims = [x_max_or_min for _ in x_mid]
 
-    major_lines, minor_lines = get_major_minor_lines(y_dims, offset)
+    major_lines, minor_lines = get_major_minor_lines(y_dims, x_mid, x_max_or_min)
 
     labels = dimension_labels(x_dims, y_dims)
     if offset >= zero(S)

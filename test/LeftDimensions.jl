@@ -12,7 +12,7 @@ let
     labels = Labels(lbl_xs, lbl_ys, lbls)
 
     # check without offset
-    minor_lines = major_lines = [0.4ft]
+    minor_lines = major_lines = [0.4ft for _ in xs]
     expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
     calc = v_dimension(multi_girders_ys_plot_format, multi_girders_xs_plot_format)
     test_dimension_fields(expected, calc)
@@ -20,7 +20,7 @@ let
     # check with offset of 5ft
     xs .-= 5ft
     lbl_xs .-= 5ft
-    major_lines = [4.5ft]
+    major_lines = [4.5ft for _ in xs]
     expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
     calc = v_dimension(multi_girders_ys_plot_format, multi_girders_xs_plot_format, offset=-5ft)
     test_dimension_fields(expected, calc)
@@ -40,8 +40,8 @@ let
     labels = Labels(lbl_xs, lbl_ys, lbls)
 
     # check without offset
-    minor_lines = [0.225ft]
-    major_lines = [0.405ft]
+    minor_lines = [0.225ft for _ in xs]
+    major_lines = [0.405ft for _ in xs]
     expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
     calc = dim_left(single_girder_xs_plot_format, single_girder_ys_plot_format)
     test_dimension_fields(expected, calc)
@@ -49,7 +49,7 @@ let
     # check with offset of 5ft
     xs = [-2.5ft, -2.5ft]
     lbl_xs = [-2.5ft]
-    major_lines = [4.5ft]
+    major_lines = [4.5ft for _ in xs]
     labels = Labels(lbl_xs, lbl_ys, lbls)
     expected = LeftDimensions(xs, ys, labels, minor_lines, major_lines)
     calc = dim_left(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=-5ft)
