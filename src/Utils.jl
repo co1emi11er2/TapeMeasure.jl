@@ -162,6 +162,11 @@ function dimensions(
     x_dims, y_dims
 end
 
+"""
+    find_theta(xs, ys)
+
+Not implemented.
+"""
 function find_theta(xs, ys)
     # determine slope
     dx = last(xs) - first(xs)
@@ -172,6 +177,9 @@ function find_theta(xs, ys)
     return theta 
 end
 
+"""
+    get_major_minor_lines(x_or_y_dims, offset::T) where T
+"""
 function get_major_minor_lines(x_or_y_dims, offset::T) where T
     pnt1 = x_or_y_dims[1]
     pnt2 = x_or_y_dims[2]
@@ -230,7 +238,7 @@ function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero
     end
 end
 
-function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
+function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
     
     x_mid, y_dims = dimensions(xs, ys)
 
@@ -249,30 +257,45 @@ function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero
     end
 end
 
-# function plot_h_dimensions_makie!(
-#     xs::Vector{Vector{T}}, 
-#     ys::Vector{Vector{S}}; 
-#     error = 0.02ft, 
-#     color = :grey, 
-#     offset = zero(S),
-#     ) where T where S
+function h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S} 
+	xs, ys = _convert_to_vectors(objects)
+	return h_dimension(xs, ys, offset=offset)
+end
 
-#     # plot dimension lines
-#     x_dims, y_dims = middle.(xs), middle.(ys)
-#     y_dims = y_dims .+ offset
-#     err = sequence(length(xs), error, 0.0ft)
-#     lines!(x_dims, y_dims; color, linewidth=1)
-#     errorbars!(x_dims, y_dims, err; color, linewidth=1)
+function v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S} 
+	xs, ys = _convert_to_vectors(objects)
+	return v_dimension(xs, ys, offset=offset)
+end
 
-#     # plot annotations
-#     fntcm = "Courier"
-#     fntsz = 4
-#     x_lbls = find_midpoints(x_dims)
-#     y_lbls = find_midpoints(y_dims)
-#     spa = round.(T, find_spacing(x_dims), digits=2)
-#     annos = string.(spa)
-#     n = length.(annos)
-#     blanks = vcat("█".^n #=.* "█"=#)
-#     text!(x_lbls, y_lbls; text=blanks, color=:white, align=(:center, :center))
-#     text!(x_lbls, y_lbls; text=annos, color, align=(:center, :center))
+function _convert_to_vectors(objects::Vector{Vector{Tuple{T, S}}}) where {T, S}
+    xs = [_parse_tuple_object(object)[1] for object in objects]
+    ys = [_parse_tuple_object(object)[2] for object in objects]
+    
+    return xs, ys
+end
+
+
+# function _convert_to_vectors(objects::Vector{Vector{Tuple{T, S}}}) where {T, S}
+#     for object in objects
+#         xs = [point(1) for point in object]       
+#         ys = [point(2) for point in object]
+
+#         if first(object) != last(object)
+#             push!(xs, first(xs))
+#             push!(ys, first(ys))
+#         end
+#     end
+
 # end
+
+function _parse_tuple_object(object)
+    xs = [point[1] for point in object]       
+    ys = [point[2] for point in object]
+
+    if first(object) != last(object)
+        push!(xs, first(xs))
+        push!(ys, first(ys))
+    end
+
+    return xs, ys
+end
