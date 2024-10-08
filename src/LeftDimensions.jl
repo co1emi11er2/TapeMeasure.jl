@@ -1,9 +1,9 @@
-struct LeftDimensions
-    xs
-    ys
-    labels
-    minor_lines
-    major_lines
+mutable struct LeftDimensions{T, S}
+    xs::Vector{T}
+    ys::Vector{S}
+    labels::Labels{T, S}
+    minor_lines::Vector{S}
+    major_lines::Vector{S}
 end
 
 

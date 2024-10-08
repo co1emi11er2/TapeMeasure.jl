@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.46
+# v0.19.45
 
 using Markdown
 using InteractiveUtils
@@ -35,7 +35,7 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = top_dimension(x, y)
+td = h_dimension(x, y)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -115,6 +115,17 @@ begin
 	plot!(right)
 end
 
+# ╔═╡ b1d4605d-8882-41d1-8a5b-38819e70775a
+begin
+	let
+		x = [0, 1]
+		y = [10, 10]
+		plot(x, y, aspectratio=1)
+		top = dim_top(x, y)
+		plot!(top)
+	end
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -134,7 +145,7 @@ StructuralUnits = "~0.1.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.5"
+julia_version = "1.10.4"
 manifest_format = "2.0"
 project_hash = "d561a26c03fa9a685c1c77eb7857423af740660c"
 
@@ -1178,7 +1189,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.11.0+0"
+version = "5.8.0+1"
 
 [[deps.libdecor_jll]]
 deps = ["Artifacts", "Dbus_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "Pango_jll", "Wayland_jll", "xkbcommon_jll"]
@@ -1276,5 +1287,6 @@ version = "1.4.1+1"
 # ╠═dbfa8d09-c788-47de-ac07-0a9086e6bad6
 # ╠═7231f28c-38a7-4b1f-9c3e-650ba799db46
 # ╠═8273a5a2-0271-4500-a1f1-61c4454df15a
+# ╠═b1d4605d-8882-41d1-8a5b-38819e70775a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

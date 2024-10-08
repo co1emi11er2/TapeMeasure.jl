@@ -1,7 +1,7 @@
-struct Labels
-    xs
-    ys
-    lbls
+struct Labels{T, S}
+    xs::Vector{T}
+    ys::Vector{S}
+    lbls::Vector{String}
 end
 
 
