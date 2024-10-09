@@ -52,7 +52,8 @@ dims = h_dimension(x, y)
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims)
 ```
-[<img src="./assets/plots_plt.svg" width="500"/>](image.png)
+[<img src="./assets/plots_plt.svg" width="500"/>](image.png)  
+
 *Can work similarly with Makie*
 
 ```julia
