@@ -17,6 +17,10 @@ PlotsDimExt = "RecipesBase"
 
 [compat]
 julia = "1.10"
+Statistics = "1.10"
+Unitful = "1.21"
+Makie = "0.21"
+RecipesBase = "1.3"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
