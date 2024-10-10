@@ -47,7 +47,7 @@ y = [
 	[-0.25ft, -0.541666667ft, -0.875ft, -3.375ft, -4.020833333000001ft, -4.75ft, -4.75ft, -4.020833333000001ft, -3.375ft, -0.875ft, -0.541666667ft, -0.25ft, -0.25ft]
 ]
 
-dims = h_dimension(x, y)
+dims = dim_h(x, y)
 
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims)
