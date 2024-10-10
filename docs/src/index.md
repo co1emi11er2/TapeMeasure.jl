@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = Dimensions
+CurrentModule = TapeMeasure
 ```
 
-# Dimensions
+# TapeMeasure
 
-Documentation for [Dimensions](https://github.com/co1emi11er2/Dimensions.jl).
+Documentation for [TapeMeasure](https://github.com/co1emi11er2/TapeMeasure.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [Dimensions]
+Modules = [TapeMeasure]
 ```

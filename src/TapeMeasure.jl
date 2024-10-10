@@ -1,4 +1,4 @@
-module Dimensions
+module TapeMeasure
 
 import Statistics: middle
 using Unitful

@@ -1,14 +1,14 @@
-using Dimensions
+using TapeMeasure
 using Documenter
 
-DocMeta.setdocmeta!(Dimensions, :DocTestSetup, :(using Dimensions); recursive=true)
+DocMeta.setdocmeta!(TapeMeasure, :DocTestSetup, :(using TapeMeasure); recursive=true)
 
 makedocs(;
-    modules=[Dimensions],
+    modules=[TapeMeasure],
     authors="Cole Miller",
-    sitename="Dimensions.jl",
+    sitename="TapeMeasure.jl",
     format=Documenter.HTML(;
-        canonical="https://co1emi11er2.github.io/Dimensions.jl",
+        canonical="https://co1emi11er2.github.io/TapeMeasure.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/co1emi11er2/Dimensions.jl",
+    repo="github.com/co1emi11er2/TapeMeasure.jl",
     devbranch="main",
 )

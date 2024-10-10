@@ -75,6 +75,6 @@ jobs:
         shell: julia --project=docs --color=yes {0}
         run: |
           using Documenter: DocMeta, doctest
-          using Dimensions
-          DocMeta.setdocmeta!(Dimensions, :DocTestSetup, :(using Dimensions); recursive=true)
-          doctest(Dimensions)
+          using TapeMeasure
+          DocMeta.setdocmeta!(TapeMeasure, :DocTestSetup, :(using TapeMeasure); recursive=true)
+          doctest(TapeMeasure)
