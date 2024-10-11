@@ -1,7 +1,7 @@
 module MakieDimExt
 
-using Dimensions
-import Dimensions: dim, dim!
+using TapeMeasure
+import TapeMeasure: dim, dim!
 using Makie
 import Makie.SpecApi as S
 
