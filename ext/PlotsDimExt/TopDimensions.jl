@@ -1,4 +1,4 @@
-@recipe function f(dims::TopDimensions; with_mask=true, dim_color=:black) 
+@recipe function f(dims::TopDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=0) 
     
     legend := false
 
@@ -33,6 +33,11 @@
 
     # plot labels
     @series begin
+		with_mask --> with_mask
+		font_color --> dim_color
+		font_size --> font_size
+		align_text --> align_text
+		text_rotation --> text_rotation
         dims.labels
     end
 end

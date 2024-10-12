@@ -1,7 +1,7 @@
 module PlotsDimExt
 
 using TapeMeasure
-using RecipesBase
+using Plots
 
 include("Labels.jl")
 include("TopDimensions.jl")

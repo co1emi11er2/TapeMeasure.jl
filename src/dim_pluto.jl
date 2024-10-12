@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.46
+# v0.19.47
 
 using Markdown
 using InteractiveUtils
@@ -36,7 +36,7 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = h_dimension(x, y)
+td = h_dimension(x, y, offset=-3ft)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -86,7 +86,7 @@ vd = v_dimension(yy, xx, offset=-5)
 # ╔═╡ 9c23f4c3-609c-4178-bf85-512c4d0ecfcf
 begin
 	plot(yy, xx, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
-	plot!(vd)
+	plot!(vd, with_mask=false)
 end
 
 # ╔═╡ 64c3d889-3da7-4a42-87cb-c796b259cafb
