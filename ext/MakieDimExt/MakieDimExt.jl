@@ -11,6 +11,9 @@ import Makie.SpecApi as S
         color = :black,
         linewidth = 1,
         fontsize = 8,
+        font = "sans-serif",
+        rotation = false,
+        with_mask = true,
     )
 end
 

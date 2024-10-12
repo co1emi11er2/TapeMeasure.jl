@@ -26,14 +26,22 @@ function Makie.plot!(p::Dim{<:Tuple{LeftDimensions}})
 	lbl_y = obj[].labels.ys
 	annos = obj[].labels.lbls
 
+	# check rotation
+	p.rotation[] = p.rotation[] === false ? π/2 : p.rotation[]
+
 	# create blank labels
 	n = length.(annos)
-    blanks = vcat("█".^n #=.* "█"=#)
+	monospaced_fonts = ["JetBrains"]
+	blank_mask = p.font[] in monospaced_fonts ? "█".^n .* "█" : "█".^n # courier is monospaced (add extra blank)
+    blanks = vcat(blank_mask)
 
 	# plot blank labels
-	text!(p, lbl_x, lbl_y; text=blanks, align=(:center, :center), color=:white, fontsize=p.fontsize)
+	if p.with_mask[]
+		text!(p, lbl_x, lbl_y; text=blanks, align=(:center, :center), color=:white, fontsize=p.fontsize, font=p.font, rotation=p.rotation)
+	end
 
 	# plot labels
-    text!(p, lbl_x, lbl_y; text=annos, align=(:center, :center), color=p.color, fontsize=p.fontsize)
+	text_align = p.with_mask[] == true ? :center : :bottom
+    text!(p, lbl_x, lbl_y; text=annos, align=(:center, text_align), color=p.color, fontsize=p.fontsize, font=p.font, rotation=p.rotation)
     return p
 end

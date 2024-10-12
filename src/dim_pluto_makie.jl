@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.46
+# v0.19.47
 
 using Markdown
 using InteractiveUtils
@@ -42,10 +42,10 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = h_dimension(x, y)
+td = h_dimension(x, y, offset=-0ft)
 
 # ╔═╡ 49427aeb-5740-4d5f-a0ce-780a24c6a572
-ld = v_dimension(y, x)
+ld = v_dimension(y, x, offset=0ft)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -53,7 +53,7 @@ begin
 		f = Figure()
 		ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
 		lines!.(ax, x, y, color=:lightgrey)
-		plot!(ax, td)
+		plot!(ax, td, with_mask=true)
 		f
 	end
 end
@@ -64,7 +64,7 @@ begin
 		f = Figure()
 		ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
 		lines!.(ax, y, x, color=:lightgrey)
-		plot!(ax, ld)
+		plot!(ax, ld, with_mask=false)
 		f
 	end
 end
