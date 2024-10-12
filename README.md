@@ -76,7 +76,10 @@ f
 - Makes dimensioning easy
 - Works with Unitful
 - Dimensional consistency checks
-- Hope to integrate with Meshes ecosystem
+
+## Roadmap
+- [ ] Integrate with Meshes ecosystem
+- [ ] Add angle dimensions
 
 ## Contributing
 
