@@ -5,7 +5,7 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ 2caf3158-76c9-11ef-2e1c-2b2b107b423e
-using PlutoDevMacros, Makie, CairoMakie, Meshes
+using PlutoDevMacros, Makie, CairoMakie, Meshes, Statistics
 
 # ╔═╡ 2329b82c-aa6d-4fd6-b053-b1cb9ff67fa7
 using PlutoUI
@@ -164,7 +164,7 @@ begin
 	f = Figure()
 	ax = Axis(f[1, 1])
 	lines!(ax, gx, gy)
-	plot!(ax, top)
+	plot!(ax, top, fontsize=12)
 	plot!(ax, bot)
 	plot!(ax, left)
 	plot!(ax, right)
@@ -280,6 +280,7 @@ Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 Meshes = "eacbb407-ea5a-433e-ab97-5258b1ca43fa"
 PlutoDevMacros = "a0499f29-c39b-4c5c-807c-88074221b949"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StructuralUnits = "ec81c399-378c-4a82-baa1-80fb2fc85b6c"
 
 [compat]
@@ -288,6 +289,7 @@ Makie = "~0.21.9"
 Meshes = "~0.51.6"
 PlutoDevMacros = "~0.8.1"
 PlutoUI = "~0.7.59"
+Statistics = "~1.11.1"
 StructuralUnits = "~0.1.0"
 """
 
@@ -297,7 +299,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.11.0"
 manifest_format = "2.0"
-project_hash = "1c90e8e11468c195e48d534b961d712e8bf76747"
+project_hash = "161c5760a41477325f485b4295c4b0e1f1234375"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -2009,8 +2011,8 @@ version = "3.6.0+0"
 # ╠═afa59f81-f4ca-4708-9ff9-57539d290334
 # ╠═36479cda-c416-475a-ad34-38582e7df59a
 # ╠═06ae1797-0d11-48d4-b571-06090a6e685c
-# ╟─b5efb3e2-bcba-42c0-94dc-dce8ff8e6c08
-# ╟─b72aa993-e73a-42c2-b70e-22440b5b9b0a
+# ╠═b5efb3e2-bcba-42c0-94dc-dce8ff8e6c08
+# ╠═b72aa993-e73a-42c2-b70e-22440b5b9b0a
 # ╠═8b54cbee-419e-4498-be73-d0c03ef2f5c9
 # ╠═49427aeb-5740-4d5f-a0ce-780a24c6a572
 # ╠═fa68b90c-4b93-4d32-be72-32f96318f34f

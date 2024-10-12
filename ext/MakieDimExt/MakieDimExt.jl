@@ -7,8 +7,10 @@ import Makie.SpecApi as S
 
 
 @recipe(Dim, object) do scene
-    Theme(
-        # plot_color = :red
+    Attributes(
+        color = :black,
+        linewidth = 1,
+        fontsize = 8,
     )
 end
 

@@ -12,13 +12,13 @@ function Makie.plot!(p::Dim{<:Tuple{BottomDimensions}})
 	major_lines = xs .* 0 .+ obj[].major_lines
 
 	# Plot dimension lines
-    lines!(p, xs, ys; color = :black)
+    lines!(p, xs, ys; color = p.color, linewidth=p.linewidth)
 
 	# plot extension lines
     for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
 		err_x = [x, x]
 		err_y = [y + major, y - minor]
-		lines!(p, err_x, err_y; color = :black)
+		lines!(p, err_x, err_y; color = p.color, linewidth=p.linewidth)
 	end
 
 	# pull label info
@@ -31,9 +31,9 @@ function Makie.plot!(p::Dim{<:Tuple{BottomDimensions}})
     blanks = vcat("█".^n #=.* "█"=#)
 
 	# plot blank labels
-	text!(p, lbl_x, lbl_y; text=blanks, align=(:center, :center), color=:white)
+	text!(p, lbl_x, lbl_y; text=blanks, align=(:center, :center), color=:white, fontsize=p.fontsize)
 
 	# plot labels
-    text!(p, lbl_x, lbl_y; text=annos, align=(:center, :center))
+    text!(p, lbl_x, lbl_y; text=annos, align=(:center, :center), color=p.color, fontsize=p.fontsize)
     return p
 end
