@@ -1,3 +1,4 @@
 [deps]
-TapeMeasure = "80345c00-9166-4d3e-8c72-003f651600ad"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
+TapeMeasure = "80345c00-9166-4d3e-8c72-003f651600ad"
