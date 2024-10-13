@@ -60,8 +60,8 @@
     <rect
        x="391.03006"
        y="176.7767"
-       width="515.48083"
-       height="178.1909"
+       width="568.51385"
+       height="173.24117"
        id="rect11" />
     <inkscape:path-effect
        effect="fillet_chamfer"
@@ -80,21 +80,15 @@
        apply_with_radius="true"
        only_selected="false"
        hide_knots="false" />
-    <rect
-       x="391.03006"
-       y="176.7767"
-       width="212.13202"
-       height="99.702049"
-       id="rect11-1" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-16.489452,-75.205126)">
+     transform="translate(-18.173248,-75.205126)">
     <path
        id="rect6"
-       transform="translate(-9.9156995,-9.9717772)"
+       transform="translate(-8.2319015,-9.9717772)"
        d="m 36.218062,85.176903 220.374178,0 a 9.812911,9.812911 45 0 1 9.81291,9.812911 v 80.374176 a 9.812911,9.812911 135 0 1 -9.81291,9.81291 l -220.374178,0 a 9.812911,9.812911 45 0 1 -9.812911,-9.81291 V 94.989814 a 9.812911,9.812911 135 0 1 9.812911,-9.812911 z"
        style="fill:#003fa2;fill-opacity:1;stroke:none;stroke-width:0.799999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        inkscape:path-effect="#path-effect12"
@@ -154,19 +148,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.6667px;font-family:Elephant;-inkscape-font-specification:'Elephant, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect11);display:inline;fill:#ffcc00;fill-opacity:1;stroke:#000000;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
          x="391.0293"
          y="237.37911"
-         id="tspan3"><tspan
+         id="tspan2"><tspan
            style="fill:#ffffff;stroke:none"
-           id="tspan1">TapeMeasure</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0,-0.26458333,0.26458333,0,170.023,243.30696)"
-       id="text11-4"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.6667px;font-family:Elephant;-inkscape-font-specification:'Elephant, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect11-1);shape-padding:0;display:inline;fill:#ffcc00;fill-opacity:1;stroke:#000000;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
-         x="391.0293"
-         y="237.37911"
-         id="tspan5"><tspan
-           style="font-size:26.6667px;fill:#ffffff;stroke:none"
-           id="tspan4">.JL</tspan></tspan></text>
+           id="tspan1">TapeMeasure.jl</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,18.895956,100.27953)"
@@ -174,7 +158,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Bell MT';-inkscape-font-specification:'Bell MT, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect12);display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
          x="375.47461"
          y="184.33855"
-         id="tspan6">A Dimensioning Tool for Julia</tspan></text>
+         id="tspan3">A Dimensioning Tool for Julia</tspan></text>
     <circle
        style="fill:#ff6600;stroke:#000000;stroke-width:0.868311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="circle12"
