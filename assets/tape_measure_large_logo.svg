@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240mm"
+   height="99.999992mm"
+   viewBox="0 0 240 99.999992"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="TapeMeasure.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="576.99913"
+     inkscape:cy="496.03541"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="375.47369"
+       y="161.92744"
+       width="415.07169"
+       height="48.08326"
+       id="rect12" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect12"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,9.812911,0,1 @ F,0,1,1,0,9.812911,0,1 @ F,0,1,1,0,9.812911,0,1 @ F,0,0,1,0,9.812911,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <rect
+       x="391.03006"
+       y="176.7767"
+       width="515.48083"
+       height="178.1909"
+       id="rect11" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect8"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,1.8723577,0,1 @ F,0,0,1,0,4.2419984,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <rect
+       x="391.03006"
+       y="176.7767"
+       width="212.13202"
+       height="99.702049"
+       id="rect11-1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.489452,-75.205126)">
+    <path
+       id="rect6"
+       transform="translate(-9.9156995,-9.9717772)"
+       d="m 36.218062,85.176903 220.374178,0 a 9.812911,9.812911 45 0 1 9.81291,9.812911 v 80.374176 a 9.812911,9.812911 135 0 1 -9.81291,9.81291 l -220.374178,0 a 9.812911,9.812911 45 0 1 -9.812911,-9.81291 V 94.989814 a 9.812911,9.812911 135 0 1 9.812911,-9.812911 z"
+       style="fill:#003fa2;fill-opacity:1;stroke:none;stroke-width:0.799999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:path-effect="#path-effect12"
+       inkscape:original-d="M 26.405151,85.176903 H 266.40515 V 185.1769 H 26.405151 Z"
+       inkscape:export-filename="tape_measure_large_logo.svg"
+       inkscape:export-xdpi="72.571426"
+       inkscape:export-ydpi="72.571426" />
+    <rect
+       style="fill:#ffd42a;stroke:#000000;stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3"
+       width="24.020929"
+       height="9.4334612"
+       x="90.926544"
+       y="143.7766"
+       sodipodi:type="rect" />
+    <path
+       id="rect8"
+       style="fill:#666666;stroke:#000000;stroke-width:0.86185;stroke-linecap:round;stroke-linejoin:round"
+       transform="rotate(36.873628,-1.0288963,-0.28057211)"
+       d="m 121.01599,24.094238 17.05323,-3.58092 a 3.443757,3.443757 39.070528 0 1 4.15146,3.370255 v 7.121472 h -23.33714 l 0.21405,-4.65565 a 2.4178086,2.4178086 130.38676 0 1 1.9184,-2.255157 z"
+       sodipodi:nodetypes="ccccc"
+       inkscape:path-effect="#path-effect8"
+       inkscape:original-d="m 119.18359,24.479013 23.03709,-4.837438 v 11.36347 h -23.33714 z" />
+    <path
+       id="path1"
+       style="fill:#c83737;stroke:#000000;stroke-width:0.8;stroke-dasharray:none;stroke-opacity:1"
+       d="M 68.131482,93.209588 A 30,30 0 0 0 38.131246,123.20982 v 3.70934 11.29078 11.29027 c 0,2.05498 1.654353,3.70985 3.709334,3.70985 h 52.581285 c 2.05498,0 3.70934,-1.65487 3.70934,-3.70985 v -11.29027 -11.29078 -3.70934 A 30,30 0 0 0 68.131482,93.209588 Z" />
+    <path
+       style="fill:#b3b3b3;stroke-width:0.264583"
+       d="m 137.58305,141.96682 v 18.25625"
+       id="path3" />
+    <circle
+       style="fill:#ff6600;stroke:#000000;stroke-width:0.868311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path5"
+       cx="68.131226"
+       cy="120.31054"
+       r="19.456167" />
+    <path
+       style="fill:#008080;stroke:#000000;stroke-width:0.887489;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 107.05112,149.08907 v 4.07724"
+       id="path4-5" />
+    <rect
+       style="fill:#999999;fill-opacity:1;stroke:#000000;stroke-width:0.932226;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7"
+       width="2.5457051"
+       height="13.890688"
+       x="112.33566"
+       y="143.8427" />
+    <path
+       style="fill:#008080;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 102.42543,151.1969 v 1.91316"
+       id="path4-5-7" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-3.867236e-8,76.145088)"
+       id="text11"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.6667px;font-family:Elephant;-inkscape-font-specification:'Elephant, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect11);display:inline;fill:#ffcc00;fill-opacity:1;stroke:#000000;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="391.0293"
+         y="237.37911"
+         id="tspan3"><tspan
+           style="fill:#ffffff;stroke:none"
+           id="tspan1">TapeMeasure</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0,-0.26458333,0.26458333,0,170.023,243.30696)"
+       id="text11-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.6667px;font-family:Elephant;-inkscape-font-specification:'Elephant, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect11-1);shape-padding:0;display:inline;fill:#ffcc00;fill-opacity:1;stroke:#000000;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="391.0293"
+         y="237.37911"
+         id="tspan5"><tspan
+           style="font-size:26.6667px;fill:#ffffff;stroke:none"
+           id="tspan4">.JL</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,18.895956,100.27953)"
+       id="text12"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:'Bell MT';-inkscape-font-specification:'Bell MT, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect12);display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.02362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="375.47461"
+         y="184.33855"
+         id="tspan6">A Dimensioning Tool for Julia</tspan></text>
+    <circle
+       style="fill:#ff6600;stroke:#000000;stroke-width:0.868311;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="circle12"
+       cx="68.131226"
+       cy="120.31054"
+       r="19.456167" />
+  </g>
+</svg>
