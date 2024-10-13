@@ -19,7 +19,7 @@ let
     # check with offset of 5ft
     ys .+= 5ft
     lbl_ys .+= 5ft
-    major_lines = [4.5ft for _ in xs]
+    major_lines = [5.0ft for _ in xs]
     expected = TopDimensions(xs, ys, labels, minor_lines, major_lines)
     calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=5ft)
     test_dimension_fields(expected, calc)

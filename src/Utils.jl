@@ -147,7 +147,7 @@ function _get_major_minor_lines(x_or_y_dims, y_or_x_mid, y_or_x_max::T) where T
     major_lines = zeros(T, length(y_or_x_mid))
     for (i, y_or_x) in enumerate(y_or_x_mid)
 
-        major_line = abs(y_or_x_max - y_or_x)*0.9
+        major_line = abs(y_or_x_max - y_or_x)
         major_line = major_line == zero(T) ? min_length : major_line
         major_lines[i] = major_line
     end
