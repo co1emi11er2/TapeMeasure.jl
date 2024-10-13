@@ -1,5 +1,5 @@
 # TapeMeasure
-[<img src="./docs/src/assets/tape_measure_large_logo.svg"/>](image.png)  
+[<img src="./docs/src/assets/large_logo.svg"/>](image.png)  
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://co1emi11er2.github.io/TapeMeasure.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://co1emi11er2.github.io/TapeMeasure.jl/dev/)
