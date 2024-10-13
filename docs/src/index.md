@@ -4,7 +4,7 @@ CurrentModule = TapeMeasure
 
 # TapeMeasure.jl
 
-[<img src="../../assets/tape_measure_large_logo.svg" />](image.png)
+[<img src="./assets/tape_measure_large_logo.svg" />](image.png)
 
 TapeMeasure.jl is a Julia package for handling physical dimensions and units in scientific computing. It provides a robust framework for defining, converting, and manipulating dimensions.
 
