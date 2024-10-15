@@ -6,20 +6,13 @@ end
 
 include("setup_tests.jl")
 
-@testitem "Top Dimensions" setup=[DimensionObjectSetup] begin
-    include("TopDimensions.jl")
+@testitem "Horizontal Dimensions" setup=[DimensionObjectSetup] begin
+    include("HDimensions.jl")
 end
 
-@testitem "Bottom Dimensions" setup=[DimensionObjectSetup] begin
-    include("BottomDimensions.jl")
+@testitem "Vertical Dimensions" setup=[DimensionObjectSetup] begin
+    include("VDimensions.jl")
 end
 
-@testitem "Right Dimensions" setup=[DimensionObjectSetup] begin
-    include("RightDimensions.jl")
-end
-
-@testitem "Left Dimensions" setup=[DimensionObjectSetup] begin
-    include("LeftDimensions.jl")
-end
 
 @run_package_tests verbose=true

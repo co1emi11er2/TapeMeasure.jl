@@ -1,4 +1,4 @@
-@recipe function f(dims::BottomDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=0) 
+@recipe function f(dims::HDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=0) 
     
     legend := false
 
@@ -21,7 +21,7 @@
 	# plot extension lines
 	for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
 		err_x = [x, x]
-		err_y = [y + major, y - minor]
+		err_y = [y + minor, y - major]
 		
 		@series begin
 			seriestype  :=  :path

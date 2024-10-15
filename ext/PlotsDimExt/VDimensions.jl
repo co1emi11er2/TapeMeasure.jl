@@ -1,4 +1,4 @@
-@recipe function f(dims::LeftDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=90) 
+@recipe function f(dims::VDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=90)
     
     legend := false
 
@@ -20,7 +20,7 @@
 
 	# plot extension lines
 	for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
-		err_x = [x + major, x - minor]
+		err_x = [x + minor, x - major]
 		err_y = [y, y]
 
 		@series begin

@@ -1,13 +1,11 @@
+Makie.plottype(::VDimensions) = Dim{<:Tuple{VDimensions}}
 
-Makie.plottype(::TopDimensions) = Dim{<:Tuple{TopDimensions}}
-
-function Makie.plot!(p::Dim{<:Tuple{TopDimensions}})
+function Makie.plot!(p::Dim{<:Tuple{VDimensions}})
 	obj = p[:object]
 	
     xs = obj[].xs
 	ys = obj[].ys
 
-	# get!(kwargs, :linewidth)
 	# major and minor lines can be single digit or vector
 	# convert to vector
 	minor_lines = xs .* 0 .+ obj[].minor_lines
@@ -18,8 +16,8 @@ function Makie.plot!(p::Dim{<:Tuple{TopDimensions}})
 
 	# plot extension lines
     for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
-		err_x = [x, x]
-		err_y = [y + minor, y - major]
+		err_x = [x + minor, x - major]
+		err_y = [y, y]
 		lines!(p, err_x, err_y; color = p.color, linewidth=p.linewidth)
 	end
 
@@ -27,6 +25,9 @@ function Makie.plot!(p::Dim{<:Tuple{TopDimensions}})
 	lbl_x = obj[].labels.xs
 	lbl_y = obj[].labels.ys
 	annos = obj[].labels.lbls
+
+	# check rotation
+	p.rotation[] = p.rotation[] === false ? π/2 : p.rotation[]
 
 	# create blank labels
 	n = length.(annos)

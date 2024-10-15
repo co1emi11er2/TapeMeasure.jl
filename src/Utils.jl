@@ -176,7 +176,7 @@ This function calculates the horizontal dimensions based on the input vectors `x
   - `major_lines`: The major lines for the dimensions.
 - If `offset` is less than zero, returns an instance of `BottomDimensions` with the same fields as above.
 """
-function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
+@stable function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
 
     x_dims, y_mid = _dimensions(xs, ys)
 
@@ -189,9 +189,9 @@ function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero
 
     labels = _dimension_labels(x_dims, y_dims)
     if offset >= zero(S)
-        return TopDimensions(x_dims, y_dims, labels, minor_lines, major_lines)
+        return HDimensions{T, S}(x_dims, y_dims, labels, minor_lines, major_lines)
     else
-        return BottomDimensions(x_dims, y_dims, labels, minor_lines, major_lines)
+        return HDimensions{T, S}(x_dims, y_dims, labels, major_lines, minor_lines)
     end
 end
 
@@ -215,22 +215,22 @@ Calculate the vertical dimensions for a given set of x and y coordinates.
   - `major_lines`: The major lines for the dimensions.
 - If `offset` is less than zero, returns a `LeftDimensions` object containing the same fields as above.
 """
-function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
+@stable function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
 
     x_mid, y_dims = _dimensions(xs, ys)
 
     # ensure x_dims values are either maximum or minimum
-    max_or_min = offset >= zero(S) ? max : min
+    max_or_min = offset >= zero(T) ? max : min
     x_max_or_min = max_or_min(x_mid...) + offset
     x_dims = [x_max_or_min for _ in x_mid]
 
     major_lines, minor_lines = _get_major_minor_lines(y_dims, x_mid, x_max_or_min)
 
     labels = _dimension_labels(x_dims, y_dims)
-    if offset >= zero(S)
-        return RightDimensions(x_dims, y_dims, labels, minor_lines, major_lines)
+    if offset >= zero(T)
+        return VDimensions{T, S}(x_dims, y_dims, labels, minor_lines, major_lines)
     else
-        return LeftDimensions(x_dims, y_dims, labels, minor_lines, major_lines)
+        return VDimensions{T, S}(x_dims, y_dims, labels, major_lines, minor_lines)
     end
 end
 

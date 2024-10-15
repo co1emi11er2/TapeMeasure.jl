@@ -81,7 +81,7 @@ begin
 end
 
 # ╔═╡ 43cc08aa-9b1a-473b-8af9-41a92e6eb2aa
-vd = v_dimension(yy, xx, offset=-5)
+vd = v_dimension(yy, xx, offset=5.0)
 
 # ╔═╡ 9c23f4c3-609c-4178-bf85-512c4d0ecfcf
 begin
