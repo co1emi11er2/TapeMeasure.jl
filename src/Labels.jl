@@ -1,5 +1,5 @@
 """
-    struct Labels{T, S}
+    mutable struct Labels{T, S}
 
 A structure to hold labeled information for dimensions object.
 
@@ -8,7 +8,7 @@ A structure to hold labeled information for dimensions object.
 - `ys::Vector{S}`: A vector of y-coordinates of type `S`.
 - `lbls::Vector{String}`: A vector of labels corresponding to the data points.
 """
-struct Labels{T, S}
+mutable struct Labels{T, S}
     xs::Vector{T}
     ys::Vector{S}
     lbls::Vector{String}

@@ -12,7 +12,7 @@ A mutable struct representing the right dimensions for an object that can be sho
 - `offset::T`: Stores the offset value of the dimension
 
 # Type Parameters
-- `T`: The type of the elements in the `xs`, `minor_lines`, and `major_lines` vectors.
+- `T`: The type of the elements in the `xs`, `minor_lines`, `major_lines` vectors and `offset` value.
 - `S`: The type of the elements in the `ys` vector.
 """
 mutable struct VDimensions{T, S} <: Dimensions
@@ -35,13 +35,13 @@ Calculate the vertical dimensions for a given set of x and y coordinates.
 - `offset`: An optional parameter with a default value of `zero(S)`, used to adjust the x-dimensions.
 
 # Returns
-- If `offset` is greater than or equal to zero, returns a `RightDimensions` object containing:
+- `VDimensions` object containing:
   - `x_dims`: The x dimensions adjusted by the offset.
   - `y_dims`: The y dimensions.
   - `labels`: The dimension labels.
   - `minor_lines`: The minor lines for the dimensions.
   - `major_lines`: The major lines for the dimensions.
-- If `offset` is less than zero, returns a `LeftDimensions` object containing the same fields as above.
+  - `offset`: offset from reference objects
 """
 @stable function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
 
@@ -69,7 +69,13 @@ Calculate the vertical dimension of a collection of objects.
 - `offset`: An optional offset value of type `S`. Defaults to `zero(S)`.
 
 # Returns
-- The vertical dimension of the given objects.
+- `VDimensions` object containing:
+  - `x_dims`: The x dimensions adjusted by the offset.
+  - `y_dims`: The y dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 """
 @stable function v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
@@ -88,9 +94,13 @@ Computes the right dimension of a given set of x and y coordinates of an object.
 - `offset`: An optional offset value of type `S`. Defaults to zero.
 
 # Returns
-- `RightDimensions` or `LeftDimensions`: Depending on the value of the offset, 
-  returns an instance of `RightDimensions` if the offset is non-negative, 
-  otherwise returns an instance of `LeftDimensions`.
+- `VDimensions` object containing:
+  - `x_dims`: The x dimensions adjusted by the offset.
+  - `y_dims`: The y dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 
 If the offset is not provided, it is set to 10% of the range of x coordinates. The function then computes 
 the x and y dimensions, major and minor lines, and labels, and returns the 
@@ -136,9 +146,13 @@ Computes the left dimensions of a given set of x and y coordinates of an object.
 - `offset`: An optional offset value of type `S`. Defaults to zero.
 
 # Returns
-- `RightDimensions` or `LeftDimensions`: Depending on the value of the offset, 
-  returns an instance of `RightDimensions` if the offset is non-negative, 
-  otherwise returns an instance of `LeftDimensions`.
+- `VDimensions` object containing:
+  - `x_dims`: The x dimensions adjusted by the offset.
+  - `y_dims`: The y dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 
 If the offset is not provided, it is set to 10% of the range of x coordinates. The function then computes 
 the x and y dimensions, major and minor lines, and labels, and returns the 

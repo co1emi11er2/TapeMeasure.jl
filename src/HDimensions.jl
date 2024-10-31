@@ -9,10 +9,11 @@ A mutable struct representing the horizontal dimensions for an object that can b
 - `labels::Labels{T, S}`: An instance of `Labels` containing labels for the x and y coordinates.
 - `minor_lines::Vector{S}`: A vector containing the positions of minor grid lines.
 - `major_lines::Vector{S}`: A vector containing the positions of major grid lines.
+- `offset::T`: Stores the offset value of the dimension
 
 # Type Parameters
 - `T`: The type of the elements in the `xs` vector.
-- `S`: The type of the elements in the `ys`, `minor_lines`, and `major_lines` vectors.
+- `S`: The type of the elements in the `ys`, `minor_lines`, `major_lines` vectors, and `offset` value.
 """
 mutable struct HDimensions{T, S} <: Dimensions
     xs::Vector{T}
@@ -34,13 +35,13 @@ This function calculates the horizontal dimensions based on the input vectors `x
 - `offset`: An optional parameter with a default value of `zero(S)`, used to adjust the y-dimensions.
 
 # Returns
-- If `offset` is greater than or equal to zero, returns an instance of `TopDimensions` containing:
+- `HDimensions` object containing:
   - `x_dims`: The calculated x-dimensions.
   - `y_dims`: The adjusted y-dimensions.
   - `labels`: The dimension labels.
   - `minor_lines`: The minor lines for the dimensions.
   - `major_lines`: The major lines for the dimensions.
-- If `offset` is less than zero, returns an instance of `BottomDimensions` with the same fields as above.
+  - `offset`: offset from reference objects
 """
 @stable function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
 
@@ -69,7 +70,13 @@ Calculate the horizontal dimension of a collection of objects.
 - `offset`: An optional offset value of type `S`. Defaults to `zero(S)`.
 
 # Returns
-- The horizontal dimension of the given objects.
+- `HDimensions` object containing:
+  - `x_dims`: The calculated x-dimensions.
+  - `y_dims`: The adjusted y-dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 """
 @stable function h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
@@ -89,9 +96,13 @@ Computes the top dimensions for a given set of x and y coordinates of an object.
 - `offset`: An optional offset value of type `S`. Defaults to zero.
 
 # Returns
-- `TopDimensions` or `BottomDimensions`: Depending on the value of the offset, 
-  returns an instance of `TopDimensions` if the offset is non-negative, 
-  otherwise returns an instance of `BottomDimensions`.
+- `HDimensions` object containing:
+  - `x_dims`: The calculated x-dimensions.
+  - `y_dims`: The adjusted y-dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 
 If the offset is not provided, it is set to 10% of the range of x coordinates. The function then computes 
 the x and y dimensions, major and minor lines, and labels, and returns the 
@@ -136,9 +147,13 @@ Computes the bottom dimension for a given set of x and y coordinates of an objec
 - `offset`: An optional offset value of type `S`. Defaults to zero.
 
 # Returns
-- `TopDimensions` or `BottomDimensions`: Depending on the value of the offset, 
-  returns an instance of `TopDimensions` if the offset is non-negative, 
-  otherwise returns an instance of `BottomDimensions`.
+- `HDimensions` object containing:
+  - `x_dims`: The calculated x-dimensions.
+  - `y_dims`: The adjusted y-dimensions.
+  - `labels`: The dimension labels.
+  - `minor_lines`: The minor lines for the dimensions.
+  - `major_lines`: The major lines for the dimensions.
+  - `offset`: offset from reference objects
 
 If the offset is not provided, it is set to 10% of the range of x coordinates. The function then computes 
 the x and y dimensions, major and minor lines, and labels, and returns the 
