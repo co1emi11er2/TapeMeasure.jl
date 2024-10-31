@@ -15,7 +15,7 @@ struct Labels{T, S}
 end
 
 
-function _dimension_labels(
+@stable function _dimension_labels(
     x_dims::Vector{T},
     y_dims::Vector{S};
     ) where T where S
@@ -35,7 +35,7 @@ function _dimension_labels(
 
 end
 
-function _dimension_labels(
+@stable function _dimension_labels(
     x_dims::Vector{T},
     y_dims::Vector{S};
     ) where T<:Quantity where S<:Quantity

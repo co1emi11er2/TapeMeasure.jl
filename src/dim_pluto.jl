@@ -116,49 +116,16 @@ begin
 	plot!(right)
 end
 
-# ╔═╡ af5a83aa-e2bc-4225-b78d-690947a70cec
+# ╔═╡ a4e55ebf-3b7f-4a30-93e1-798848d54181
+object = [collect(zip(xs[1:end-1], ys[1:end-1])) for (xs, ys) in zip(x, y)] 
 
-function test_dimension_fields(expected, calc)
-        for field in fieldnames(typeof(calc))
-            if field != :labels
-                @debug "field: $field"
-                @assert getfield(calc, field) == getfield(expected, field)
-            end
-        end
-    
-        expected_lbls = expected.labels
-        calc_lbls = calc.labels
-        for field in fieldnames(typeof(calc_lbls))
-            @debug "field: $field"
-            @assert getfield(calc_lbls, field) == getfield(expected_lbls, field)
-        end
-    end
+# ╔═╡ 0ec58727-473a-436c-bb7e-c8ba85166bc4
+tup_dim = h_dimension(object)
 
-# ╔═╡ b1d4605d-8882-41d1-8a5b-38819e70775a
-let 
-    spa = 8.0ft
-    xs = [0.0ft + (i-1)*spa for i in 1:5]
-    ys = [0.0ft for i in 1:5]
-    lbl_xs = [8.0ft, 16.0ft, 24.0ft, 32.0ft]
-    lbl_ys = [-2.5ft, -2.5ft, -2.5ft, -2.5ft]
-	lbls = ["8.0 ft", "8.0 ft", "8.0 ft", "8.0 ft"]
-    labels = Labels(lbl_xs, lbl_ys, lbls)
-	offset=0.0ft
-
-    # check without offset
-    minor_lines = major_lines = [0.4ft for _ in xs]
-    expected = HDimensions(xs, ys, labels, minor_lines, major_lines, offset)
-    calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format)
-    test_dimension_fields(expected, calc)
-end
-
-# ╔═╡ 2d3e0f6e-69aa-48bf-912b-f69299d549be
-convert(typeof(1.0ft), 1inch)
-
-# ╔═╡ 3bacfac2-2cc9-4cbf-877d-8654d000c65c
-Base.@kwdef struct MyType{T}
-	a::T=5
-	b::T
+# ╔═╡ b0430bc2-d3c6-4af8-9a1f-2d5a535298d0
+begin
+	plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
+	plot!(tup_dim)
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -1372,9 +1339,8 @@ version = "1.4.1+1"
 # ╠═dbfa8d09-c788-47de-ac07-0a9086e6bad6
 # ╠═7231f28c-38a7-4b1f-9c3e-650ba799db46
 # ╠═8273a5a2-0271-4500-a1f1-61c4454df15a
-# ╠═af5a83aa-e2bc-4225-b78d-690947a70cec
-# ╠═b1d4605d-8882-41d1-8a5b-38819e70775a
-# ╠═2d3e0f6e-69aa-48bf-912b-f69299d549be
-# ╠═3bacfac2-2cc9-4cbf-877d-8654d000c65c
+# ╠═a4e55ebf-3b7f-4a30-93e1-798848d54181
+# ╠═0ec58727-473a-436c-bb7e-c8ba85166bc4
+# ╠═b0430bc2-d3c6-4af8-9a1f-2d5a535298d0
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
