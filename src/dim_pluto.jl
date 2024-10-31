@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.47
+# v0.19.46
 
 using Markdown
 using InteractiveUtils
@@ -96,7 +96,7 @@ gx =[2.5, 2.5, 3.7083333329999997, 3.7083333329999997, 2.666666667, 2.666666667,
 gy = [-0.25, -0.541666667, -0.875, -3.375, -4.020833333000001, -4.75, -4.75, -4.020833333000001, -3.375, -0.875, -0.541666667, -0.25, -0.25]
 
 # ╔═╡ 2401f455-6db0-46c5-8951-d73556ef2164
-top = dim_top(gx, gy)
+top = dim_top(gx, gy, offset=5)
 
 # ╔═╡ 8437187a-ad9b-4f37-809f-b6cedcc95157
 bot = dim_bottom(gx, gy)
@@ -116,15 +116,49 @@ begin
 	plot!(right)
 end
 
+# ╔═╡ af5a83aa-e2bc-4225-b78d-690947a70cec
+
+function test_dimension_fields(expected, calc)
+        for field in fieldnames(typeof(calc))
+            if field != :labels
+                @debug "field: $field"
+                @assert getfield(calc, field) == getfield(expected, field)
+            end
+        end
+    
+        expected_lbls = expected.labels
+        calc_lbls = calc.labels
+        for field in fieldnames(typeof(calc_lbls))
+            @debug "field: $field"
+            @assert getfield(calc_lbls, field) == getfield(expected_lbls, field)
+        end
+    end
+
 # ╔═╡ b1d4605d-8882-41d1-8a5b-38819e70775a
-begin
-	let
-		x = [0, 1]
-		y = [10, 10]
-		plot(x, y, aspectratio=1)
-		top = dim_top(x, y)
-		plot!(top)
-	end
+let 
+    spa = 8.0ft
+    xs = [0.0ft + (i-1)*spa for i in 1:5]
+    ys = [0.0ft for i in 1:5]
+    lbl_xs = [8.0ft, 16.0ft, 24.0ft, 32.0ft]
+    lbl_ys = [-2.5ft, -2.5ft, -2.5ft, -2.5ft]
+	lbls = ["8.0 ft", "8.0 ft", "8.0 ft", "8.0 ft"]
+    labels = Labels(lbl_xs, lbl_ys, lbls)
+	offset=0.0ft
+
+    # check without offset
+    minor_lines = major_lines = [0.4ft for _ in xs]
+    expected = HDimensions(xs, ys, labels, minor_lines, major_lines, offset)
+    calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format)
+    test_dimension_fields(expected, calc)
+end
+
+# ╔═╡ 2d3e0f6e-69aa-48bf-912b-f69299d549be
+convert(typeof(1.0ft), 1inch)
+
+# ╔═╡ 3bacfac2-2cc9-4cbf-877d-8654d000c65c
+Base.@kwdef struct MyType{T}
+	a::T=5
+	b::T
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -146,7 +180,7 @@ StructuralUnits = "~0.1.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.0"
+julia_version = "1.11.1"
 manifest_format = "2.0"
 project_hash = "44bbe055f345013ac0447ea40cac0089543971dc"
 
@@ -1338,6 +1372,9 @@ version = "1.4.1+1"
 # ╠═dbfa8d09-c788-47de-ac07-0a9086e6bad6
 # ╠═7231f28c-38a7-4b1f-9c3e-650ba799db46
 # ╠═8273a5a2-0271-4500-a1f1-61c4454df15a
+# ╠═af5a83aa-e2bc-4225-b78d-690947a70cec
 # ╠═b1d4605d-8882-41d1-8a5b-38819e70775a
+# ╠═2d3e0f6e-69aa-48bf-912b-f69299d549be
+# ╠═3bacfac2-2cc9-4cbf-877d-8654d000c65c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

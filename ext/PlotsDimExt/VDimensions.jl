@@ -1,4 +1,4 @@
-@recipe function f(dims::VDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=90)
+@recipe function f(dims::VDimensions{T, S}; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=90) where {T, S}
     
     legend := false
 
@@ -9,6 +9,11 @@
 	# convert to vector
 	minor_lines = xs .* 0 .+ dims.minor_lines
 	major_lines = xs .* 0 .+ dims.major_lines
+
+	# if offset is less than zero then switch minor and major lines
+	if dims.offset < zero(T)
+		major_lines, minor_lines = minor_lines, major_lines
+	end
 
     # plot dimensions
     @series begin

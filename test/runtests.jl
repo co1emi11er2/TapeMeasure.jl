@@ -1,7 +1,7 @@
 using TestItems, TestItemRunner
 
 if isdefined(@__MODULE__,:LanguageServer)
-    include("../src/Dimensions.jl")
+    include("../src/TapeMeasure.jl")
 end
 
 include("setup_tests.jl")

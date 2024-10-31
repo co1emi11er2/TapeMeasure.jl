@@ -13,6 +13,11 @@ function Makie.plot!(p::Dim{<:Tuple{HDimensions}})
 	minor_lines = xs .* 0 .+ obj[].minor_lines
 	major_lines = xs .* 0 .+ obj[].major_lines
 
+	# if offset is less than zero then switch minor and major lines
+	if obj[].offset < zero(typeof(obj[].offset))
+		major_lines, minor_lines = minor_lines, major_lines
+	end
+
 	# Plot dimension lines
     lines!(p, xs, ys; color = p.color, linewidth=p.linewidth)
 

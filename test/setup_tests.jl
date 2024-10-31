@@ -22,7 +22,7 @@
     function test_dimension_fields(expected, calc)
         for field in fieldnames(typeof(calc))
             if field != :labels
-                @debug "field: $field"
+                @debug"field: $field"
                 @test getfield(calc, field) == getfield(expected, field)
             end
         end

@@ -6,6 +6,8 @@ using DispatchDoctor
 export Labels, HDimensions, BottomDimensions, LeftDimensions, VDimensions
 export dim, dim!, h_dimension, v_dimension, dim_top, dim_bottom, dim_left, dim_right
 
+abstract type Dimensions end
+
 include("Utils.jl")
 include("Labels.jl")
 include("HDimensions.jl")
