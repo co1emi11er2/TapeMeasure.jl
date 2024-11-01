@@ -43,7 +43,7 @@ This function calculates the horizontal dimensions based on the input vectors `x
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-@stable function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
+function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
 
     x_dims, y_mid = _dimensions(xs, ys)
 
@@ -78,7 +78,7 @@ Calculate the horizontal dimension of a collection of objects.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-@stable function h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+function h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
 	return h_dimension(xs, ys, offset=offset)
 end
@@ -108,7 +108,7 @@ If the offset is not provided, it is set to 10% of the range of x coordinates. T
 the x and y dimensions, major and minor lines, and labels, and returns the 
 appropriate dimensions object based on the offset value.
 """
-@stable function dim_top(xs::Vector{T}, ys::Vector{S}; offset=zero(S)) where {T, S}
+function dim_top(xs::Vector{T}, ys::Vector{S}; offset=zero(S)) where {T, S}
     max_x = max(xs...)
     min_x = min(xs...)
     max_y = max(ys...)
@@ -128,7 +128,7 @@ appropriate dimensions object based on the offset value.
     return HDimensions(x_dims, y_dims, labels, minor_lines, major_lines, offset)
 end
 
-@stable function dim_top(object::Vector{Tuple{T, S}}; offset=zero(S)) where {T, S}
+function dim_top(object::Vector{Tuple{T, S}}; offset=zero(S)) where {T, S}
     # convert to vectors
     xs, ys = _parse_tuple_object(object)
 
@@ -159,7 +159,7 @@ If the offset is not provided, it is set to 10% of the range of x coordinates. T
 the x and y dimensions, major and minor lines, and labels, and returns the 
 appropriate dimensions object based on the offset value.
 """
-@stable function dim_bottom(xs::Vector{T}, ys::Vector{S}; offset=zero(S)) where {T, S}
+function dim_bottom(xs::Vector{T}, ys::Vector{S}; offset=zero(S)) where {T, S}
     max_x = max(xs...)
     min_x = min(xs...)
     min_y = min(ys...)
@@ -179,7 +179,7 @@ appropriate dimensions object based on the offset value.
     return HDimensions(x_dims, y_dims, labels, minor_lines, major_lines, offset)
 end
 
-@stable function dim_bottom(object::Vector{Tuple{T, S}}; offset=zero(S)) where {T, S}
+function dim_bottom(object::Vector{Tuple{T, S}}; offset=zero(S)) where {T, S}
     # convert to vectors
     xs, ys = _parse_tuple_object(object)
 

@@ -1,3 +1,8 @@
+# This sets the preferences for dispatch doctor.
+# Note this does not work when running through testitems but will through terminal (ie CI)
+using Preferences: set_preferences!
+set_preferences!("TapeMeasure", "instability_check" => "error")
+
 using TestItems, TestItemRunner
 
 if isdefined(@__MODULE__,:LanguageServer)

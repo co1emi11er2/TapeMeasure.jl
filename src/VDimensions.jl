@@ -43,7 +43,7 @@ Calculate the vertical dimensions for a given set of x and y coordinates.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-@stable function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
+function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
 
     x_mid, y_dims = _dimensions(xs, ys)
 
@@ -77,7 +77,7 @@ Calculate the vertical dimension of a collection of objects.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-@stable function v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+function v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
 	return v_dimension(xs, ys, offset=offset)
 end
@@ -106,7 +106,7 @@ If the offset is not provided, it is set to 10% of the range of x coordinates. T
 the x and y dimensions, major and minor lines, and labels, and returns the 
 appropriate dimensions object based on the offset value.
 """
-@stable function dim_right(xs::Vector{T}, ys::Vector{S}; offset=zero(T)) where {T, S}
+function dim_right(xs::Vector{T}, ys::Vector{S}; offset=zero(T)) where {T, S}
     max_y = max(ys...)
     min_y = min(ys...)
     max_x = max(xs...)
@@ -127,7 +127,7 @@ appropriate dimensions object based on the offset value.
 
 end
 
-@stable function dim_right(object::Vector{Tuple{T, S}}; offset=zero(T)) where {T, S}
+function dim_right(object::Vector{Tuple{T, S}}; offset=zero(T)) where {T, S}
     # convert to vectors
     xs, ys = _parse_tuple_object(object)
 
@@ -158,7 +158,7 @@ If the offset is not provided, it is set to 10% of the range of x coordinates. T
 the x and y dimensions, major and minor lines, and labels, and returns the 
 appropriate dimensions object based on the offset value.
 """
-@stable function dim_left(xs::Vector{T}, ys::Vector{S}; offset=zero(T)) where {T, S}
+function dim_left(xs::Vector{T}, ys::Vector{S}; offset=zero(T)) where {T, S}
     max_y = max(ys...)
     min_y = min(ys...)
     min_x = min(xs...)
@@ -179,7 +179,7 @@ appropriate dimensions object based on the offset value.
 
 end
 
-@stable function dim_left(object::Vector{Tuple{T, S}}; offset=zero(T)) where {T, S}
+function dim_left(object::Vector{Tuple{T, S}}; offset=zero(T)) where {T, S}
     # convert to vectors
     xs, ys = _parse_tuple_object(object)
 

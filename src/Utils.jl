@@ -22,7 +22,7 @@ julia> find_spacing(a)
 
 ```
 """
-@stable function _find_spacing(xs::AbstractVector{T}) where T
+function _find_spacing(xs::AbstractVector{T}) where T
     # check if length of vector is more than 1
     if length(xs) == 1
         error("Vector must have a length greater than 1")
@@ -63,7 +63,7 @@ julia> find_midpoints(a)
 
 ```
 """
-@stable function _find_midpoints(xs::AbstractVector{T}) where T
+function _find_midpoints(xs::AbstractVector{T}) where T
     # check if length of vector is more than 1
     if length(xs) == 1
         error("Vector must have a length greater than 1")
@@ -88,7 +88,7 @@ end
 Finds the dimensions of a horizontally spaced set of objects with points `xs` and `ys`.
 Each vector in `xs` and `ys` represents a new object.
 """
-@stable function _dimensions(
+function _dimensions(
     xs::Vector{Vector{T}},
     ys::Vector{Vector{S}};
     ) where T where S
@@ -104,7 +104,7 @@ end
 
 Not implemented.
 """
-@stable function _find_theta(xs, ys)
+function _find_theta(xs, ys)
     # determine slope
     dx = last(xs) - first(xs)
     dy = last(ys) - first(ys)
@@ -118,7 +118,7 @@ end
 """
     get_major_minor_lines(x_or_y_dims, offset::T) where T
 """
-@stable function _get_major_minor_lines(x_or_y_dims, offset::T) where T
+function _get_major_minor_lines(x_or_y_dims, offset::T) where T
     pnt1 = x_or_y_dims[1]
     pnt2 = x_or_y_dims[2]
     dim_dist = abs(pnt2 - pnt1)
@@ -136,7 +136,7 @@ end
     return major_lines, minor_lines
 end
 
-@stable function _get_major_minor_lines(x_or_y_dims, y_or_x_mid, y_or_x_max::T) where T
+function _get_major_minor_lines(x_or_y_dims, y_or_x_mid, y_or_x_max::T) where T
     pnt1 = x_or_y_dims[1]
     pnt2 = x_or_y_dims[2]
     dim_dist = abs(pnt2 - pnt1)
@@ -158,7 +158,7 @@ end
 end
 
 # This function splits a Vector{Vector{Tuple{T, S}}} to xs, ys = Vector{Vector{T}}, Vector{Vector{S}}
-@stable function _convert_to_vectors(objects::Vector{Vector{Tuple{T, S}}}) where {T, S}
+function _convert_to_vectors(objects::Vector{Vector{Tuple{T, S}}}) where {T, S}
     xs, ys = Vector{T}[], Vector{S}[]
     for object in objects
         x, y = _parse_tuple_object(object)
@@ -168,7 +168,7 @@ end
     return xs, ys
 end
 
-@stable function _parse_tuple_object(object::Vector{Tuple{T, S}}) where {T, S}
+function _parse_tuple_object(object::Vector{Tuple{T, S}}) where {T, S}
     xs, ys = T[], S[]
     for point in object
         x, y = point
@@ -179,7 +179,7 @@ end
     return xs, ys
 end
 
-@stable function _ensure_closed!(xs::Vector{T}, ys::Vector{S}) where {T, S}
+function _ensure_closed!(xs::Vector{T}, ys::Vector{S}) where {T, S}
     if xs[1] != xs[end] || ys[1] != ys[end]
         push!(xs, xs[1])
         push!(ys, ys[1])

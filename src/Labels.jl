@@ -15,7 +15,7 @@ mutable struct Labels{T, S}
 end
 
 
-@stable function _dimension_labels(
+function _dimension_labels(
     x_dims::Vector{T},
     y_dims::Vector{S};
     ) where T where S
@@ -35,7 +35,7 @@ end
 
 end
 
-@stable function _dimension_labels(
+function _dimension_labels(
     x_dims::Vector{T},
     y_dims::Vector{S};
     ) where T<:Quantity where S<:Quantity
