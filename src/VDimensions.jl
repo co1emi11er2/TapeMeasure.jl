@@ -15,7 +15,7 @@ A mutable struct representing the right dimensions for an object that can be sho
 - `T`: The type of the elements in the `xs`, `minor_lines`, `major_lines` vectors and `offset` value.
 - `S`: The type of the elements in the `ys` vector.
 """
-mutable struct VDimensions{T, S} <: Dimensions
+mutable struct VDimensions{T, S} <: AbstractDimensions
     xs::Vector{T}
     ys::Vector{S}
     labels::Labels{T, S}

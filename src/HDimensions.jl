@@ -15,7 +15,7 @@ A mutable struct representing the horizontal dimensions for an object that can b
 - `T`: The type of the elements in the `xs` vector.
 - `S`: The type of the elements in the `ys`, `minor_lines`, `major_lines` vectors, and `offset` value.
 """
-mutable struct HDimensions{T, S} <: Dimensions
+mutable struct HDimensions{T, S} <: AbstractDimensions
     xs::Vector{T}
     ys::Vector{S}
     labels::Labels{T, S}
