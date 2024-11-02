@@ -30,6 +30,7 @@ Here's a basic example of how to use TapeMeasure.jl:
 ```julia
 using TapeMeasure
 using Unitful
+using Plots
 
 const ft = u"ft"
 
