@@ -8,6 +8,8 @@
 [![Coverage](https://codecov.io/gh/co1emi11er2/TapeMeasure.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/co1emi11er2/TapeMeasure.jl)
 [![Coverage](https://coveralls.io/repos/github/co1emi11er2/TapeMeasure.jl/badge.svg?branch=main)](https://coveralls.io/github/co1emi11er2/TapeMeasure.jl?branch=main)
 
+[![DispatchDoctor](https://img.shields.io/badge/%F0%9F%A9%BA_tested_with-DispatchDoctor.jl-blue?labelColor=white)](https://github.com/MilesCranmer/DispatchDoctor.jl)
+
 # TapeMeasure.jl
 
 TapeMeasure.jl is a Julia package for handling physical dimensions and units in scientific computing. It provides a robust framework for defining, converting, and manipulating dimensions, ensuring that calculations are dimensionally consistent.

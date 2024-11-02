@@ -1,7 +1,7 @@
 name = "TapeMeasure"
 uuid = "80345c00-9166-4d3e-8c72-003f651600ad"
 authors = ["Cole Miller"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 DispatchDoctor = "8d63f2c5-f18a-4cf2-ba9d-b3f60fc568c8"
