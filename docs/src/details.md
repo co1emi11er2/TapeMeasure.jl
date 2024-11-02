@@ -14,8 +14,8 @@ There are two main use cases for TapeMeasure currently. One use case is for obje
 
 ### Multiple Objects
 When dealing with a set of objects, there are two main functions currently.
-- [`h_dimension`](@ref h_dimension) (may be renamed to `h_dim`)
-- [`v_dimension`](@ref v_dimension) (may be renamed to `v_dim`)
+- [`h_dim`](@ref h_dim)
+- [`v_dim`](@ref v_dim)
 
 These functions will calculate the middle of the each object. This is trivial currently. It is just finding the middle point of the xs and ys of each object (using the `middle` function from the Statistics package), and then it determines either the horizontal or vertical spacing between the middles of each object. The function will then return a `TopDimensions` or `BottomDimensions` object or a `LeftDimensions` or `RightDimensions` object that can then be plotted in Plots.jl and Makie.jl. The user can provide an keyword `offset` value to the functions to change the location of where the dimension will be plotted.
 
@@ -51,13 +51,13 @@ for (i, ys) in enumerate(y)
     y[i] = ys .+ (5*i)*ft
 end
 
-dims = h_dimension(x, y, offset=3ft)
+dims = h_dim(x, y, offset=3ft)
 
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims)
 ```
 ```@example plots
-dims = v_dimension(x, y, offset=-3ft)
+dims = v_dim(x, y, offset=-3ft)
 
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims)

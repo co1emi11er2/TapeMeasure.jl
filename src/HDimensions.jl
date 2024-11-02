@@ -25,7 +25,7 @@ mutable struct HDimensions{T, S} <: AbstractDimensions
 end
 
 """
-    h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
+    h_dim(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
 
 This function calculates the horizontal dimensions based on the input vectors `xs` and `ys`.
 
@@ -43,7 +43,7 @@ This function calculates the horizontal dimensions based on the input vectors `x
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
+function h_dim(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(S)) where {T, S}
 
     x_dims, y_mid = _dimensions(xs, ys)
 
@@ -61,7 +61,7 @@ function h_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero
 end
 
 """
-    h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+    h_dim(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 
 Calculate the horizontal dimension of a collection of objects.
 
@@ -78,9 +78,9 @@ Calculate the horizontal dimension of a collection of objects.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-function h_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+function h_dim(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
-	return h_dimension(xs, ys, offset=offset)
+	return h_dim(xs, ys, offset=offset)
 end
 
 

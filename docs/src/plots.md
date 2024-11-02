@@ -42,14 +42,14 @@ y = [
 ```
 
 ```@example plots
-dims = h_dimension(x, y)
+dims = h_dim(x, y)
 
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims, dim_color=:blue, with_mask=false, font_size=8)
 ```
 
 ```@example plots
-dims = v_dimension(y, x)
+dims = v_dim(y, x)
 
 plot(y, x, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims, dim_color=:blue, text_rotation=0)

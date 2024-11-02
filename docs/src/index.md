@@ -47,7 +47,7 @@ y = [
     [-0.25ft, -0.541666667ft, -0.875ft, -3.375ft, -4.020833333000001ft, -4.75ft, -4.75ft, -4.020833333000001ft, -3.375ft, -0.875ft, -0.541666667ft, -0.25ft, -0.25ft]
 ]
 
-dims = h_dimension(x, y)
+dims = h_dim(x, y)
 
 plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
 plot!(dims)
@@ -80,7 +80,7 @@ y = [
     [-0.25ft, -0.541666667ft, -0.875ft, -3.375ft, -4.020833333000001ft, -4.75ft, -4.75ft, -4.020833333000001ft, -3.375ft, -0.875ft, -0.541666667ft, -0.25ft, -0.25ft]
 ]
 
-dims = h_dimension(x, y)
+dims = h_dim(x, y)
 
 f = Figure()
 ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)

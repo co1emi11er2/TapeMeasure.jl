@@ -45,7 +45,7 @@ uc = Makie.UnitfulConversion(ft)
 ```
 
 ```@example plots
-dims = h_dimension(x, y)
+dims = h_dim(x, y)
 
 f = Figure()
 ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)
@@ -55,7 +55,7 @@ f
 ```
 
 ```@example plots
-dims = v_dimension(y, x)
+dims = v_dim(y, x)
 
 f = Figure()
 ax = Axis(f[1,1], autolimitaspect=1, dim1_conversion=uc, dim2_conversion=uc)

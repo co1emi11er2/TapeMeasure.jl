@@ -36,7 +36,7 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = h_dimension(x, y, offset=-3ft)
+td = h_dim(x, y, offset=-3ft)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -72,7 +72,7 @@ yy = [
 ]
 
 # ╔═╡ eacec5eb-e0eb-4b4c-88f0-6879cba91b8c
-tdd = h_dimension(xx, yy, offset=0)
+tdd = h_dim(xx, yy, offset=0)
 
 # ╔═╡ dfe5e6b6-843d-44eb-a625-1dc4bf814c07
 begin
@@ -81,7 +81,7 @@ begin
 end
 
 # ╔═╡ 43cc08aa-9b1a-473b-8af9-41a92e6eb2aa
-vd = v_dimension(yy, xx, offset=5.0)
+vd = v_dim(yy, xx, offset=5.0)
 
 # ╔═╡ 9c23f4c3-609c-4178-bf85-512c4d0ecfcf
 begin
@@ -120,7 +120,7 @@ end
 object = [collect(zip(xs[1:end-1], ys[1:end-1])) for (xs, ys) in zip(x, y)] 
 
 # ╔═╡ 0ec58727-473a-436c-bb7e-c8ba85166bc4
-tup_dim = h_dimension(object)
+tup_dim = h_dim(object)
 
 # ╔═╡ b0430bc2-d3c6-4af8-9a1f-2d5a535298d0
 begin

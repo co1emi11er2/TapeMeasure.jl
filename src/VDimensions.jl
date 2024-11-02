@@ -25,7 +25,7 @@ mutable struct VDimensions{T, S} <: AbstractDimensions
 end
 
 """
-    v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
+    v_dim(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
 
 Calculate the vertical dimensions for a given set of x and y coordinates.
 
@@ -43,7 +43,7 @@ Calculate the vertical dimensions for a given set of x and y coordinates.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
+function v_dim(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero(T)) where {T, S}
 
     x_mid, y_dims = _dimensions(xs, ys)
 
@@ -60,7 +60,7 @@ function v_dimension(xs::Vector{Vector{T}}, ys::Vector{Vector{S}}; offset = zero
 end
 
 """
-    v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+    v_dim(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 
 Calculate the vertical dimension of a collection of objects.
 
@@ -77,9 +77,9 @@ Calculate the vertical dimension of a collection of objects.
   - `major_lines`: The major lines for the dimensions.
   - `offset`: offset from reference objects
 """
-function v_dimension(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
+function v_dim(objects::Vector{Vector{Tuple{T, S}}}; offset = zero(S)) where {T, S}
 	xs, ys = _convert_to_vectors(objects)
-	return v_dimension(xs, ys, offset=offset)
+	return v_dim(xs, ys, offset=offset)
 end
 
 """
