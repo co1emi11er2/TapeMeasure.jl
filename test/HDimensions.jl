@@ -14,7 +14,7 @@ let
     # check without offset
     minor_lines = major_lines = [0.4ft for _ in xs]
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 0.0ft)
-    calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format)
+    calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format)
     test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
@@ -22,7 +22,7 @@ let
     lbl_ys .+= 5ft
     major_lines = [5.0ft for _ in xs]
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 5.0ft)
-    calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=5ft)
+    calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=5ft)
     test_dimension_fields(expected, calc)
 
     # check with offset of -5ft
@@ -30,7 +30,7 @@ let
     lbl_ys .-= 10ft
     major_lines = [5.0ft for _ in xs]
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, -5.0ft)
-    calc = h_dimension(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=-5ft)
+    calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=-5ft)
     test_dimension_fields(expected, calc)
     
 end
