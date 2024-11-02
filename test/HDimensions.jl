@@ -1,5 +1,5 @@
 # ----------------
-# multi-object plot format check
+# multi-object check
 # ----------------
 
 let 
@@ -16,6 +16,9 @@ let
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 0.0ft)
     calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = h_dim(multi_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     ys .+= 5ft
@@ -23,6 +26,9 @@ let
     major_lines = [5.0ft for _ in xs]
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 5.0ft)
     calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=5ft)
+    test_dimension_fields(expected, calc)
+    # tuple format
+    calc = h_dim(multi_object, offset=5ft)
     test_dimension_fields(expected, calc)
 
     # check with offset of -5ft
@@ -32,12 +38,37 @@ let
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, -5.0ft)
     calc = h_dim(multi_girders_xs_plot_format, multi_girders_ys_plot_format, offset=-5ft)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = h_dim(multi_object, offset=-5ft)
+    test_dimension_fields(expected, calc)
+    
+end
+
+# ----------------
+# multi-object check - unitless
+# ----------------
+
+let 
+    spa = 8.0
+    xs = [4.0, 12.0, 20.0, 28.0, 36.0]
+    ys = [-2.5, -2.5, -2.5, -2.5, -2.5]
+    lbl_xs = [8.0, 16.0, 24.0, 32.0]
+    lbl_ys = [-2.5, -2.5, -2.5, -2.5]
+    lbls = ["8.0", "8.0", "8.0", "8.0"]
+    labels = Labels(lbl_xs, lbl_ys, lbls)
+
+    # check without offset
+    minor_lines = major_lines = [0.4 for _ in xs]
+    expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 0.0)
+    # tuple format
+    calc = h_dim(multi_object_unitless)
+    test_dimension_fields(expected, calc)
     
 end
 
 
 # ----------------
-# single-object plot format check
+# single-object check
 # ----------------
 
 let 
@@ -54,6 +85,9 @@ let
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 0.30000000000000004ft)
     calc = dim_top(single_girder_xs_plot_format, single_girder_ys_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_top(single_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     ys = [4.75ft, 4.75ft]
@@ -63,12 +97,15 @@ let
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, 5.0ft)
     calc = dim_top(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=5ft)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_top(single_object, offset=5ft)
+    test_dimension_fields(expected, calc)
     
 end
 
 
 # ----------------
-# single-object plot format check
+# single-object check
 # ----------------
 
 let 
@@ -85,6 +122,9 @@ let
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, -0.30000000000000004ft)
     calc = dim_bottom(single_girder_xs_plot_format, single_girder_ys_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_bottom(single_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     ys = [-9.75ft, -9.75ft]
@@ -93,5 +133,8 @@ let
     labels = Labels(lbl_xs, lbl_ys, lbls)
     expected = HDimensions(xs, ys, labels, minor_lines, major_lines, -5.0ft)
     calc = dim_bottom(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=-5ft)
+    test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_bottom(single_object, offset=-5ft)
     test_dimension_fields(expected, calc)
 end

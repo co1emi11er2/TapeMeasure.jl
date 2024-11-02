@@ -1,5 +1,5 @@
 # ----------------
-# multi-object plot format check
+# multi-object check
 # ----------------
 
 let 
@@ -16,6 +16,9 @@ let
     expected = VDimensions(xs, ys, labels, minor_lines, major_lines, 0.0ft)
     calc = v_dim(multi_girders_ys_plot_format, multi_girders_xs_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = v_dim(inv_multi_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     xs .+= 5ft
@@ -24,7 +27,10 @@ let
     expected = VDimensions(xs, ys, labels, minor_lines, major_lines, 5.0ft)
     calc = v_dim(multi_girders_ys_plot_format, multi_girders_xs_plot_format, offset=5ft)
     test_dimension_fields(expected, calc)
-    
+    # tuple format
+    calc = v_dim(inv_multi_object, offset=5ft)
+    test_dimension_fields(expected, calc)
+
     # check with offset of -5ft
     xs .-= 10ft
     lbl_xs .-= 10ft
@@ -32,12 +38,15 @@ let
     expected = VDimensions(xs, ys, labels, minor_lines, major_lines, -5.0ft)
     calc = v_dim(multi_girders_ys_plot_format, multi_girders_xs_plot_format, offset=-5ft)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = v_dim(inv_multi_object, offset=-5ft)
+    test_dimension_fields(expected, calc)
     
 end
 
 
 # ----------------
-# single-object plot format check
+# single-object check
 # ----------------
 
 let 
@@ -54,6 +63,9 @@ let
     expected = VDimensions(xs, ys, labels,  minor_lines, major_lines, 0.45ft)
     calc = dim_right(single_girder_xs_plot_format, single_girder_ys_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_right(single_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     xs = [10.5ft, 10.5ft]
@@ -63,12 +75,15 @@ let
     expected = VDimensions(xs, ys, labels,  minor_lines, major_lines, 5.0ft)
     calc = dim_right(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=5ft)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_right(single_object, offset=5ft)
+    test_dimension_fields(expected, calc)
     
 end
 
 
 # ----------------
-# single-object plot format check
+# single-object check
 # ----------------
 
 let 
@@ -85,6 +100,9 @@ let
     expected = VDimensions(xs, ys, labels, minor_lines, major_lines, -0.45ft)
     calc = dim_left(single_girder_xs_plot_format, single_girder_ys_plot_format)
     test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_left(single_object)
+    test_dimension_fields(expected, calc)
 
     # check with offset of 5ft
     xs = [-2.5ft, -2.5ft]
@@ -93,6 +111,9 @@ let
     labels = Labels(lbl_xs, lbl_ys, lbls)
     expected = VDimensions(xs, ys, labels, minor_lines, major_lines, -5.0ft)
     calc = dim_left(single_girder_xs_plot_format, single_girder_ys_plot_format, offset=-5ft)
+    test_dimension_fields(expected, calc)
+    # tuple format
+    calc = dim_left(single_object, offset=-5ft)
     test_dimension_fields(expected, calc)
     
 end
