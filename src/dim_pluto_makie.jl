@@ -42,10 +42,10 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = h_dimension(x, y, offset=-0ft)
+td = h_dim(x, y, offset=-0ft)
 
 # ╔═╡ 49427aeb-5740-4d5f-a0ce-780a24c6a572
-ld = v_dimension(y, x, offset=0ft)
+ld = v_dim(y, x, offset=0ft)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -100,7 +100,7 @@ yy = [
 ]
 
 # ╔═╡ eacec5eb-e0eb-4b4c-88f0-6879cba91b8c
-tdd = h_dimension(xx, yy, offset=0)
+tdd = h_dim(xx, yy, offset=0)
 
 # ╔═╡ dfe5e6b6-843d-44eb-a625-1dc4bf814c07
 begin
@@ -114,7 +114,7 @@ begin
 end
 
 # ╔═╡ 43cc08aa-9b1a-473b-8af9-41a92e6eb2aa
-vd = v_dimension(yy, xx, offset=-5)
+vd = v_dim(yy, xx, offset=-5)
 
 # ╔═╡ 9c23f4c3-609c-4178-bf85-512c4d0ecfcf
 # ╠═╡ disabled = true
@@ -244,7 +244,7 @@ x
 object = [ collect(zip(xi, yi)) for (xi, yi) in zip(x, y)]
 
 # ╔═╡ 70a749b6-1836-4558-96d4-0f2cfe593443
-topdim = h_dimension(object)
+topdim = h_dim(object)
 
 # ╔═╡ 6088b407-637d-4ce8-b025-0673a63f6486
 begin

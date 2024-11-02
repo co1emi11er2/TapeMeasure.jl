@@ -1,23 +1,30 @@
-Makie.plottype(::RightDimensions) = Dim{<:Tuple{RightDimensions}}
 
-function Makie.plot!(p::Dim{<:Tuple{RightDimensions}})
+Makie.plottype(::HDimensions) = Dim{<:Tuple{HDimensions}}
+
+function Makie.plot!(p::Dim{<:Tuple{HDimensions}})
 	obj = p[:object]
 	
     xs = obj[].xs
 	ys = obj[].ys
 
+	# get!(kwargs, :linewidth)
 	# major and minor lines can be single digit or vector
 	# convert to vector
 	minor_lines = xs .* 0 .+ obj[].minor_lines
 	major_lines = xs .* 0 .+ obj[].major_lines
+
+	# if offset is less than zero then switch minor and major lines
+	if obj[].offset < zero(typeof(obj[].offset))
+		major_lines, minor_lines = minor_lines, major_lines
+	end
 
 	# Plot dimension lines
     lines!(p, xs, ys; color = p.color, linewidth=p.linewidth)
 
 	# plot extension lines
     for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
-		err_x = [x + minor, x - major]
-		err_y = [y, y]
+		err_x = [x, x]
+		err_y = [y + minor, y - major]
 		lines!(p, err_x, err_y; color = p.color, linewidth=p.linewidth)
 	end
 
@@ -25,9 +32,6 @@ function Makie.plot!(p::Dim{<:Tuple{RightDimensions}})
 	lbl_x = obj[].labels.xs
 	lbl_y = obj[].labels.ys
 	annos = obj[].labels.lbls
-
-	# check rotation
-	p.rotation[] = p.rotation[] === false ? π/2 : p.rotation[]
 
 	# create blank labels
 	n = length.(annos)

@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.47
+# v0.19.46
 
 using Markdown
 using InteractiveUtils
@@ -36,7 +36,7 @@ y = [
 ]
 
 # ╔═╡ 8b54cbee-419e-4498-be73-d0c03ef2f5c9
-td = h_dimension(x, y, offset=-3ft)
+td = h_dim(x, y, offset=-3ft)
 
 # ╔═╡ fa68b90c-4b93-4d32-be72-32f96318f34f
 begin
@@ -72,7 +72,7 @@ yy = [
 ]
 
 # ╔═╡ eacec5eb-e0eb-4b4c-88f0-6879cba91b8c
-tdd = h_dimension(xx, yy, offset=0)
+tdd = h_dim(xx, yy, offset=0)
 
 # ╔═╡ dfe5e6b6-843d-44eb-a625-1dc4bf814c07
 begin
@@ -81,7 +81,7 @@ begin
 end
 
 # ╔═╡ 43cc08aa-9b1a-473b-8af9-41a92e6eb2aa
-vd = v_dimension(yy, xx, offset=-5)
+vd = v_dim(yy, xx, offset=5.0)
 
 # ╔═╡ 9c23f4c3-609c-4178-bf85-512c4d0ecfcf
 begin
@@ -96,7 +96,7 @@ gx =[2.5, 2.5, 3.7083333329999997, 3.7083333329999997, 2.666666667, 2.666666667,
 gy = [-0.25, -0.541666667, -0.875, -3.375, -4.020833333000001, -4.75, -4.75, -4.020833333000001, -3.375, -0.875, -0.541666667, -0.25, -0.25]
 
 # ╔═╡ 2401f455-6db0-46c5-8951-d73556ef2164
-top = dim_top(gx, gy)
+top = dim_top(gx, gy, offset=5)
 
 # ╔═╡ 8437187a-ad9b-4f37-809f-b6cedcc95157
 bot = dim_bottom(gx, gy)
@@ -116,15 +116,16 @@ begin
 	plot!(right)
 end
 
-# ╔═╡ b1d4605d-8882-41d1-8a5b-38819e70775a
+# ╔═╡ a4e55ebf-3b7f-4a30-93e1-798848d54181
+object = [collect(zip(xs[1:end-1], ys[1:end-1])) for (xs, ys) in zip(x, y)] 
+
+# ╔═╡ 0ec58727-473a-436c-bb7e-c8ba85166bc4
+tup_dim = h_dim(object)
+
+# ╔═╡ b0430bc2-d3c6-4af8-9a1f-2d5a535298d0
 begin
-	let
-		x = [0, 1]
-		y = [10, 10]
-		plot(x, y, aspectratio=1)
-		top = dim_top(x, y)
-		plot!(top)
-	end
+	plot(x, y, seriestype=:shape, color=:lightgrey, legend=false, aspectratio=1)
+	plot!(tup_dim)
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -146,7 +147,7 @@ StructuralUnits = "~0.1.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.0"
+julia_version = "1.11.1"
 manifest_format = "2.0"
 project_hash = "44bbe055f345013ac0447ea40cac0089543971dc"
 
@@ -1338,6 +1339,8 @@ version = "1.4.1+1"
 # ╠═dbfa8d09-c788-47de-ac07-0a9086e6bad6
 # ╠═7231f28c-38a7-4b1f-9c3e-650ba799db46
 # ╠═8273a5a2-0271-4500-a1f1-61c4454df15a
-# ╠═b1d4605d-8882-41d1-8a5b-38819e70775a
+# ╠═a4e55ebf-3b7f-4a30-93e1-798848d54181
+# ╠═0ec58727-473a-436c-bb7e-c8ba85166bc4
+# ╠═b0430bc2-d3c6-4af8-9a1f-2d5a535298d0
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

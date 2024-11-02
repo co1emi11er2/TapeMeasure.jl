@@ -1,6 +1,6 @@
 @testsnippet DimensionObjectSetup begin
     using StructuralUnits
-    multi_girders_xs_plot_format =  x = [
+    multi_girders_xs_plot_format =  [
         [2.5ft, 2.5ft, 3.7083333329999997ft, 3.7083333329999997ft, 2.666666667ft, 2.666666667ft, 5.333333333000001ft, 5.333333333000001ft, 4.291666667ft, 4.291666667ft, 5.5ft, 5.5ft, 2.5ft],
         [10.5ft, 10.5ft, 11.708333333ft, 11.708333333ft, 10.666666667ft, 10.666666667ft, 13.333333333ft, 13.333333333ft, 12.291666667ft, 12.291666667ft, 13.5ft, 13.5ft, 10.5ft],
         [18.5ft, 18.5ft, 19.708333333ft, 19.708333333ft, 18.666666667ft, 18.666666667ft, 21.333333333ft, 21.333333333ft, 20.291666667ft, 20.291666667ft, 21.5ft, 21.5ft, 18.5ft],
@@ -16,13 +16,21 @@
         [-0.25ft, -0.541666667ft, -0.875ft, -3.375ft, -4.020833333000001ft, -4.75ft, -4.75ft, -4.020833333000001ft, -3.375ft, -0.875ft, -0.541666667ft, -0.25ft, -0.25ft]
     ]
 
-    single_girder_xs_plot_format =  x = [2.5ft, 2.5ft, 3.7083333329999997ft, 3.7083333329999997ft, 2.666666667ft, 2.666666667ft, 5.333333333000001ft, 5.333333333000001ft, 4.291666667ft, 4.291666667ft, 5.5ft, 5.5ft, 2.5ft]
-    single_girder_ys_plot_format = [-0.25ft, -0.541666667ft, -0.875ft, -3.375ft, -4.020833333000001ft, -4.75ft, -4.75ft, -4.020833333000001ft, -3.375ft, -0.875ft, -0.541666667ft, -0.25ft, -0.25ft]
+    single_girder_xs_plot_format =  multi_girders_xs_plot_format[1] 
+    single_girder_ys_plot_format = multi_girders_ys_plot_format[1]
+
+    multi_object = [collect(zip(xs[1:end-1], ys[1:end-1])) for (xs, ys) in zip(multi_girders_xs_plot_format, multi_girders_ys_plot_format)] 
+    single_object = multi_object[1]
+
+    inv_multi_object = [collect(zip(ys[1:end-1], xs[1:end-1])) for (xs, ys) in zip(multi_girders_xs_plot_format, multi_girders_ys_plot_format)] 
+    inv_single_object = inv_multi_object[1]
+
+    multi_object_unitless = [collect(zip(xs[1:end-1], ys[1:end-1])) for (xs, ys) in zip(multi_girders_xs_plot_format .|> ustrip, multi_girders_ys_plot_format .|> ustrip)]
 
     function test_dimension_fields(expected, calc)
         for field in fieldnames(typeof(calc))
             if field != :labels
-                @debug "field: $field"
+                @debug"field: $field"
                 @test getfield(calc, field) == getfield(expected, field)
             end
         end

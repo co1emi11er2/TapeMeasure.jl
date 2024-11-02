@@ -4,8 +4,6 @@ using TapeMeasure
 using Plots
 
 include("Labels.jl")
-include("TopDimensions.jl")
-include("BottomDimensions.jl")
-include("RightDimensions.jl")
-include("LeftDimensions.jl")
+include("HDimensions.jl")
+include("VDimensions.jl")
 end

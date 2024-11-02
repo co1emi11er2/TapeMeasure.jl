@@ -1,4 +1,4 @@
-@recipe function f(dims::BottomDimensions; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=0) 
+@recipe function f(dims::HDimensions{T, S}; with_mask=true, dim_color=:black, font_size = 5, align_text=:bottom, text_rotation=0) where {T, S}
     
     legend := false
 
@@ -9,6 +9,11 @@
 	# convert to vector
 	minor_lines = xs .* 0 .+ dims.minor_lines
 	major_lines = xs .* 0 .+ dims.major_lines
+
+	# if offset is less than zero then switch minor and major lines
+	if dims.offset < zero(S)
+		major_lines, minor_lines = minor_lines, major_lines
+	end
 
     # plot dimensions
     @series begin
@@ -21,7 +26,7 @@
 	# plot extension lines
 	for (x, y, minor, major) in zip(xs, ys, minor_lines, major_lines)
 		err_x = [x, x]
-		err_y = [y + major, y - minor]
+		err_y = [y + minor, y - major]
 		
 		@series begin
 			seriestype  :=  :path
