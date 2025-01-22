@@ -18,7 +18,7 @@ PlotsDimExt = "Plots"
 
 [compat]
 DispatchDoctor = "0.4.15"
-Makie = "0.21"
+Makie = "0.21, 0.22"
 Plots = "1.40"
 Statistics = "1.10"
 Unitful = "1.21"
